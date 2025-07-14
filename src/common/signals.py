@@ -22,7 +22,7 @@ def create_user_groups(sender, **kwargs):
         "view_customuser", "change_customuser",
         "view_profile", "change_profile",
         "view_healthdata",
-        "add_customuser",  # по избор
+        "add_customuser",
     ])
     staff_group.permissions.set(permissions)
 

@@ -1,0 +1,22 @@
+{% extends 'includes/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="text-center mb-4">{{ profile.full_name }}</h2>
+    <div class="card p-3">
+        <p><strong>Email:</strong> {{ profile.user.email }}</p>
+        <p><strong>Date of Birth:</strong> {{ profile.date_of_birth }}</p>
+        <p><strong>Gender:</strong> {{ profile.gender|capfirst }}</p>
+        <p><strong>Phone:</strong> {{ profile.phone }}</p>
+        {% if profile.image %}
+            <p><img src="{{ profile.image.url }}" alt="Profile Image" class="img-thumbnail" width="150"></p>
+        {% endif %}
+    </div>
+    <div class="mt-3">
+        <a href="{% url 'edit-profile' profile.pk %}" class="btn btn-warning">Edit Profile</a>
+        <a href="{% url 'delete-profile' profile.pk %}" class="btn btn-danger">Delete Profile</a>
+    </div>
+</div>
+{% endblock %}

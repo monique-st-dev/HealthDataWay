@@ -18,4 +18,4 @@ def validate_diploma_issue_date(value):
     if value < today - timedelta(days=80 * 365):
         raise ValidationError("Diploma issue date seems unrealistically old.")
 
-# Optional: Email domain restriction example (use only if needed)
+

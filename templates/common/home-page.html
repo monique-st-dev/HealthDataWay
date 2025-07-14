@@ -1,0 +1,18 @@
+{% extends 'includes/base.html' %}
+{% load static %}
+
+{% block title %}Welcome to HealthDataWay{% endblock %}
+
+{% block content %}
+<div class="container d-flex flex-column justify-content-center align-items-center" style="min-height: 75vh;">
+    <h1 class="display-4 mb-4 animate__animated animate__fadeInDown">Welcome to <span class="text-primary">HealthDataWay</span></h1>
+    <p class="lead text-center animate__animated animate__fadeInUp animate__delay-1s">
+        Your personal digital health journal for tracking, managing, and improving your health data securely.
+    </p>
+    <a href="{% url 'register_choice' %}" class="btn btn-primary btn-lg mt-4 animate__animated animate__zoomIn animate__delay-2s">Get Started</a>
+</div>
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+{% endblock %}

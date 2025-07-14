@@ -68,9 +68,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 class Profile(models.Model):
-    """
-    General profile data for all users.
-    """
     user = models.OneToOneField(
         CustomUser,
         on_delete=models.CASCADE,
@@ -116,9 +113,6 @@ class Profile(models.Model):
 
 
 class DoctorData(models.Model):
-    """
-    Additional data only for users with role = doctor.
-    """
     user = models.OneToOneField(
         CustomUser,
         on_delete=models.CASCADE,
@@ -147,9 +141,6 @@ class DoctorData(models.Model):
 
 
 class DoctorPatientLink(models.Model):
-    """
-    Many-to-many relation between doctors and their patients.
-    """
     doctor = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,

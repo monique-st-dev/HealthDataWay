@@ -24,9 +24,9 @@ class Command(BaseCommand):
                     codename = f"{action}_{model._meta.model_name}"
                     perm = Permission.objects.get(codename=codename, content_type=ct)
                     staff_group.permissions.add(perm)
-                    self.stdout.write(self.style.SUCCESS(f"✅ Added: {codename}"))
+                    self.stdout.write(self.style.SUCCESS(f"Added: {codename}"))
 
-            self.stdout.write(self.style.SUCCESS("🎉 Permissions assigned to Staff group successfully."))
+            self.stdout.write(self.style.SUCCESS("Permissions assigned to Staff group successfully."))
 
         except Exception as e:
-            self.stderr.write(self.style.ERROR(f"❌ Error assigning permissions: {e}"))
+            self.stderr.write(self.style.ERROR(f"Error assigning permissions: {e}"))

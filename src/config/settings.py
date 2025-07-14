@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 LOCAL_APPS = [
     'accounts',
     'common',
+    'dashboards',
 ]
 
 THIRD_PART_APPS = [

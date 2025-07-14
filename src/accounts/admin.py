@@ -1,14 +1,10 @@
 from django.contrib import admin
-
-# accounts/admin.py
-
-from django.contrib import admin
-from django.contrib.admin import StackedInline
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import Group
 
+from accounts.forms import AppUserCreationForm, AppUserChangeForm
 from accounts.models import Profile, DoctorData, DoctorPatientLink
+
 from common.admin_actions import (
     assign_to_staff_group,
     deactivate_users,
@@ -22,6 +18,8 @@ UserModel = get_user_model()
 @admin.register(UserModel)
 class CustomUserAdmin(UserAdmin):
     model = UserModel
+    add_form = AppUserCreationForm
+    form = AppUserChangeForm
 
     list_display = ("email", "role", "get_groups", "is_staff", "is_superuser", "is_active")
     list_filter = ("role", "is_staff", "is_superuser", "is_active")

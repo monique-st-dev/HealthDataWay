@@ -1,0 +1,22 @@
+{% extends 'includes/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2 class="mb-4 text-center">Dashboard</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card p-3 shadow-sm">
+            <h5>Welcome, {{ user.email }}</h5>
+            <p>Your role: {{ user.role|title }}</p>
+            <a href="{% url 'profile-details' user.profile.pk %}" class="btn btn-outline-primary">View Profile</a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card p-3 shadow-sm">
+            <h5>Coming Soon</h5>
+            <p>Graphs, reminders, and more health data insights.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
