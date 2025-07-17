@@ -1,0 +1,115 @@
+/*NAVBAR */
+.glass-navbar {
+    background-color: rgba(8, 117, 163, 0.3);
+    backdrop-filter: blur(10px);
+    border-bottom: none;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+    padding: 0.2rem 1rem;
+    width: 100%;
+    min-height: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+
+}
+
+.neon-title {
+    font-family: 'Lobster', cursive;
+    color: #8ECAE6;
+    font-size: 1rem;
+    text-shadow: 0 0 6px #8ECAE6, 0 0 12px #219EBC;
+}
+
+.navbar-nav .nav-link::after{
+    font-weight: 500;
+    color: white !important;
+    font-size: 0.82rem;
+    position: relative;
+    transition: all 0.3s ease;
+    padding-top: 0.5rem;
+    padding-bottom: 0.25rem;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+.navbar-logo {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+/* FOOTER */
+.glass-footer {
+    background-color: transparent !important;
+    backdrop-filter: blur(10px);
+    border-top: none;
+    box-shadow: none;
+    color: white;
+    font-size: 0.6rem;
+    padding: 0.2rem 0.5rem;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.glass-footer a {
+    color: #8ECAE6;
+    font-size: 0.65rem;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
+
+.glass-footer a:hover {
+    color: #FFB703;
+    text-shadow: 0 0 6px #FB8500;
+}
+
+main.flex-fill {
+    min-height: calc(100vh - 60px);
+}
+
+
+@media (max-width: 768px) {
+    .navbar-nav .nav-link {
+        font-size: 0.95rem;
+        padding: 8px;
+    }
+
+    .glass-footer {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    .glass-footer a {
+        display: block;
+        margin: 8px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .neon-title {
+        font-size: 1.1rem;
+    }
+
+    .glass-footer {
+        font-size: 0.75rem;
+    }
+
+    .glass-footer a {
+        font-size: 1rem;
+    }
+}
+
+.page-container {
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+}
+

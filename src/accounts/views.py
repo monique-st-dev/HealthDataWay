@@ -1,10 +1,11 @@
-from django.contrib.auth import login
+from django.contrib import messages
+from django.contrib.auth import login, get_user_model
 from django.contrib.auth.views import LoginView, LogoutView
+from django.http import HttpRequest, HttpResponseForbidden
 from django.views.generic import CreateView, TemplateView, UpdateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
-from django.shortcuts import get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
 
 from accounts.choices import UserRoles
 from accounts.forms import (
@@ -15,13 +16,15 @@ from accounts.forms import (
 )
 from accounts.models import CustomUser, Profile
 
+UserModel = get_user_model()
+
 class CustomLoginView(LoginView):
     form_class = LoginForm
     template_name = "accounts/login.html"
 
 
 class CustomLogoutView(LogoutView):
-    next_page = reverse_lazy("home")
+    template_name = "accounts/logout.html"
 
 class RegisterChoiceView(TemplateView):
     template_name = "accounts/register_choice.html"
@@ -68,6 +71,14 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = "accounts/profile_edit.html"
     success_url = reverse_lazy("dashboard")
 
+    def form_valid(self, form):
+        messages.success(self.request, "Your profile has been updated successfully.")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "There was a problem updating your profile.")
+        return super().form_invalid(form)
+
     def test_func(self):
         return self.request.user.profile.pk == self.kwargs.get("pk")
 
@@ -81,9 +92,17 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
         return Profile.objects.filter(user=self.request.user)
 
 
-@login_required
-def app_user_delete_view(request, pk):
-    profile = get_object_or_404(Profile, pk=pk, user=request.user)
-    user = profile.user
-    user.delete()
-    return redirect("home")
+def app_user_delete_view(request: HttpRequest, pk: int):
+    user = UserModel.objects.get(pk=pk)
+
+    if request.user.is_authenticated and request.user.pk == user.pk:
+        if request.method == "POST":
+            user.delete()
+            messages.success(request, "Your account was successfully deleted.")
+            return redirect("home")
+    else:
+        return HttpResponseForbidden()
+
+    return render(request, "accounts/profile-delete-page.html", {
+        "user": user,
+    })

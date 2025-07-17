@@ -1,4 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect, render
+from django.views import View
 from django.views.generic import TemplateView
 
 
@@ -14,5 +16,17 @@ class ContactView(TemplateView):
 class PrivacyPolicyView(TemplateView):
     template_name = 'common/privacy_policy.html'
 
-class DashboardView(LoginRequiredMixin, TemplateView):
-    template_name = 'common/dashboard.html'
+
+class DashboardRedirectView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        if request.user.role == "doctor":
+            return redirect("doctor_dashboard")
+        elif request.user.role == "patient":
+            return redirect("patient_dashboard")
+        else:
+            return redirect("home")  # fallback
+
+
+def custom_404(request, exception):
+   return render(request, '404.html', status=404)
+

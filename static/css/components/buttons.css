@@ -1,0 +1,189 @@
+.navbar-nav .nav-link.button-style {
+    background: rgba(142, 202, 230, 0.18);
+    border: 2px solid #8ECAE6;
+    color: #8ECAE6 !important;
+    border-radius: 10px;
+    padding: 1px 8px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+    box-shadow:
+        0 0 8px #8ECAE6,
+        0 0 15px #8ECAE6,
+        inset 0 0 10px #8ECAE6;
+    transition: all 0.35s ease-in-out;
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.navbar-nav .nav-link.button-style:hover {
+    background: #8ECAE6;
+    color: #023047 !important;
+    text-shadow:
+        1px 1px 2px rgba(0,0,0,0.8),
+        0 0 8px #2196f3;
+    box-shadow:
+        0 0 12px #2196f3,
+        0 0 25px #2196f3,
+        inset 0 0 15px #2196f3;
+    transform: scale(1.1);
+}
+
+
+/* general but */
+.button-style {
+    background: rgba(142, 202, 230, 0.18);
+    border: 2px solid #8ECAE6;
+    color: #8ECAE6 !important;
+    border-radius: 10px;
+    padding: 4px 12px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+    box-shadow:
+        0 0 8px #8ECAE6,
+        0 0 15px #8ECAE6,
+        inset 0 0 10px #8ECAE6;
+    transition: all 0.35s ease-in-out;
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.button-style:hover {
+    background: #8ECAE6;
+    color: #023047 !important;
+    text-shadow:
+        1px 1px 2px rgba(0,0,0,0.8),
+        0 0 8px #2196f3;
+    box-shadow:
+        0 0 12px #2196f3,
+        0 0 25px #2196f3,
+        inset 0 0 15px #2196f3;
+    transform: scale(1.1);
+}
+
+
+/*register butt*/
+.register-btn-glow {
+    background: rgba(142, 202, 230, 0.2);
+    border: 2px solid #8ECAE6;
+    color: #8ECAE6;
+    border-radius: 12px;
+    padding: 10px 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+    box-shadow:
+        0 0 10px #8ECAE6,
+        0 0 20px #8ECAE6,
+        inset 0 0 10px #8ECAE6;
+    transition: all 0.3s ease-in-out;
+}
+
+.register-btn-glow:hover {
+    background-color: #8ECAE6;
+    color: #023047;
+    box-shadow:
+        0 0 15px #8ECAE6,
+        0 0 30px #8ECAE6,
+        inset 0 0 15px #8ECAE6;
+    transform: scale(1.05);
+}
+.register-btn-glow-alt {
+    background: rgba(251, 133, 0, 0.1);
+    border: 2px solid #fca752;
+    color: #fca752;
+    border-radius: 12px;
+    padding: 10px 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+    box-shadow:
+        0 0 10px #fca752,
+        0 0 20px #fca752,
+        inset 0 0 10px #fca752;
+    transition: all 0.3s ease-in-out;
+}
+
+.register-btn-glow-alt:hover {
+    background-color: #fca752;
+    color: #023047;
+    box-shadow:
+        0 0 15px #fca752,
+        0 0 30px #fca752,
+        inset 0 0 15px #fca752;
+    transform: scale(1.05);
+}
+
+
+/*blue button*/
+.btn-glow-blue {
+    background: rgba(142, 202, 230, 0.1);
+    border: 2px solid #8ECAE6;
+    color: #8ECAE6;
+    border-radius: 12px;
+    padding: 10px 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    box-shadow:
+        0 0 10px #8ECAE6,
+        0 0 20px #8ECAE6,
+        inset 0 0 10px #8ECAE6;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-glow-blue:hover {
+    background-color: #8ECAE6;
+    color: #023047;
+    box-shadow:
+        0 0 15px #8ECAE6,
+        0 0 30px #8ECAE6,
+        inset 0 0 15px #8ECAE6;
+    transform: scale(1.05);
+}
+
+
+
+
+@media (max-width: 768px) {
+    .button-style {
+        padding: 3px 10px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .button-style {
+        padding: 2px 8px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-nav .nav-link.button-style {
+        padding: 3px 10px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-nav .nav-link.button-style {
+        padding: 2px 8px;
+        font-size: 0.75rem;
+    }
+}
+
+
+

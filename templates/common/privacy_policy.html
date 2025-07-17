@@ -1,20 +1,40 @@
 {% extends 'includes/base.html' %}
+{% load static %}
+
 {% block title %}Privacy Policy - HealthDataWay{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2 class="mb-4 text-center">Privacy Policy</h2>
-    <p>At HealthDataWay, we are committed to protecting your privacy and personal health data. This policy explains how we collect, use, and safeguard your information.</p>
+<canvas id="network-canvas"></canvas>
 
-    <h5 class="mt-4">Information We Collect</h5>
-    <p>We collect only the information necessary to provide you with our health tracking services, such as your account data and health entries.</p>
+<div class="container page-container position-relative text-white">
+    <h2 class="mb-4 text-center fancy-text">Privacy Policy</h2>
+    <p>
+        At <strong>HealthDataWay</strong>, we are committed to protecting your privacy and personal health data.
+    </p>
 
-    <h5 class="mt-4">How We Use Your Data</h5>
-    <p>Your data is used exclusively for your benefit and is never shared with third parties without your explicit consent.</p>
+    <h5 class="mt-3 text-warning">Information We Collect</h5>
+    <p>
+        We collect only the information necessary to provide you with our health tracking services,
+        such as your account data and health entries.
+    </p>
 
-    <h5 class="mt-4">Your Rights</h5>
-    <p>You have the right to access, modify, or delete your personal information at any time.</p>
+    <h5 class="mt-3 text-warning">How We Use Your Data</h5>
+    <p>
+        Your data is used exclusively for your benefit and is never shared with third parties without your explicit consent.
+    </p>
 
-    <p class="mt-5">If you have questions, contact us through the <a href="{% url 'contact' %}">contact form</a>.</p>
+    <h5 class="mt-3 text-warning">Your Rights</h5>
+    <p>
+        You have the right to access, modify, or delete your personal information at any time.
+    </p>
+
+    <p class="mt-4">
+        If you have questions, contact us through the
+        <a href="{% url 'contact' %}" class="text-info">contact form</a>.
+    </p>
 </div>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/network-background.js' %}"></script>
 {% endblock %}

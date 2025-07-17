@@ -1,19 +1,26 @@
 {% extends 'includes/base.html' %}
+{% load static %}
+
 {% block title %}About Us - HealthDataWay{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2 class="mb-4 text-center">About HealthDataWay</h2>
-    <p class="lead text-center">We are dedicated to helping you track and manage your health data in a secure and organized way.</p>
-    
-    <div class="row mt-5">
+<canvas id="network-canvas"></canvas>
+
+<div class="container page-container position-relative text-white">
+    <h2 class="mb-4 text-center fancy-text">About HealthDataWay</h2>
+    <p class="lead text-center mb-5">We are dedicated to helping you track and manage your health data in a secure and organized way.</p>
+
+    <div class="row gx-5">
         <div class="col-md-6">
-            <h4>Our Mission</h4>
-            <p>Empowering individuals and healthcare professionals with easy-to-use digital tools for health monitoring, secure data sharing, and personalized insights.</p>
+            <h4 class="text-warning">Our Mission</h4>
+            <p><strong>HealthDataWay</strong> is a modern digital platform where patients can securely track and manage their health data – from symptoms and measurements to treatments and prescriptions.</p>
+            <p>Doctors can register and access the health records of already registered patients, providing personalized care and timely medical collaboration.</p>
+            <p>Your data is protected and private.</p>
+            <p>You decide who has access. Take control of your health with confidence and clarity.</p>
         </div>
         <div class="col-md-6">
-            <h4>Why Choose Us</h4>
-            <ul>
+            <h4 class="text-warning">Why Choose Us</h4>
+            <ul class="custom-list">
                 <li>Secure and private</li>
                 <li>Modern and user-friendly design</li>
                 <li>Custom tools for doctors and patients</li>
@@ -23,3 +30,8 @@
     </div>
 </div>
 {% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/network-background.js' %}"></script>
+{% endblock %}
+

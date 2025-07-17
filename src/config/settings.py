@@ -24,8 +24,7 @@ SECRET_KEY = 'django-insecure-xdic2lf-zd6d7t4k&trl-gj)r36u0iwwq!(1se@vlz1^!m+3(_
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -159,3 +158,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ],
 }
+
+LOGIN_REDIRECT_URL = '/dashboard/'
+LOGOUT_REDIRECT_URL = '/accounts/logout/'
+
+

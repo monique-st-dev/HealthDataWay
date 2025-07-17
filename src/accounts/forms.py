@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django.contrib.auth import get_user_model
+from django.core.validators import RegexValidator
 
 from accounts.models import Profile, DoctorData
 from accounts.choices import UserRoles
@@ -80,6 +81,17 @@ class LoginForm(FormHelperMixin, AuthenticationForm):
 
 
 class ProfileBaseForm(FormHelperMixin, forms.ModelForm):
+    phone = forms.CharField(
+        max_length=20,
+        required=False,
+        validators=[
+            RegexValidator(
+                regex=r'^\+?\d{7,15}$',
+                message="Enter a valid phone number (7 to 15 digits, optional + at the start)."
+            )
+        ],
+    )
+
     class Meta:
         model = Profile
         fields = ['full_name', 'date_of_birth', 'gender', 'phone', 'image']

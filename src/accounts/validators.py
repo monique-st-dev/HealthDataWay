@@ -1,5 +1,6 @@
 from datetime import date, timedelta
 from django.core.exceptions import ValidationError
+import re
 
 
 def validate_age_over_18(value):
@@ -19,3 +20,6 @@ def validate_diploma_issue_date(value):
         raise ValidationError("Diploma issue date seems unrealistically old.")
 
 
+def validate_phone_number(value):
+    if not re.match(r'^\+?\d{7,15}$', value):
+        raise ValidationError("Enter a valid phone number (7 to 15 digits, optional + at the start).")

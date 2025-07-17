@@ -4,11 +4,19 @@
 {% block title %}Choose Registration Type{% endblock %}
 
 {% block content %}
-<div class="text-center mt-5">
-    <h2 class="mb-4">How would you like to register?</h2>
-    <div class="d-flex justify-content-center gap-4">
-        <a href="{% url 'register_doctor' %}" class="btn btn-outline-primary btn-lg">I'm a Doctor</a>
-        <a href="{% url 'register_patient' %}" class="btn btn-outline-success btn-lg">I'm a Patient</a>
+<canvas id="network-canvas"></canvas>
+
+<div class="container page-container text-white position-relative text-center">
+    <h2 class="mb-4 fancy-text">Choose Your Role</h2>
+    <p class="lead mb-5">How would you like to register?</p>
+
+    <div class="d-flex flex-column flex-md-row justify-content-center gap-4">
+        <a href="{% url 'register_doctor' %}" class="btn btn-lg register-btn-glow">I’m a Doctor</a>
+        <a href="{% url 'register_patient' %}" class="btn btn-lg register-btn-glow-alt">I’m a Patient</a>
     </div>
 </div>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/network-background.js' %}"></script>
 {% endblock %}

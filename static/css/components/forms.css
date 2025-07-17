@@ -1,0 +1,108 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* FORM INPUTS */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+select,
+textarea {
+  padding: 10px 14px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.07);
+  color: white;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #8ecae6;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #8ecae6;
+  outline-offset: 2px;
+}
+
+
+label {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* ERROR MESSAGES */
+.errorlist,
+.helptext,
+.text-danger {
+  color: #FF6B6B;
+  font-size: 0.9rem;
+}
+
+/* SUCCESS MESSAGES */
+.text-success {
+  color: #8EC07C;
+}
+
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  form {
+    gap: 1rem;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"],
+  select,
+  textarea {
+    font-size: 0.95rem;
+    padding: 8px 12px;
+  }
+
+  label {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"],
+  select,
+  textarea {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+
+  label {
+    font-size: 0.85rem;
+  }
+
+  .errorlist,
+  .helptext,
+  .text-danger,
+  .text-success {
+    font-size: 0.8rem;
+  }
+}

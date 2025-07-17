@@ -1,9 +1,10 @@
 from django.shortcuts import redirect
 from django.views import View
 from django.views.generic import TemplateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from accounts.choices import UserRoles
-
+import logging
+logger = logging.getLogger(__name__)
 
 class DashboardRedirectView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
@@ -14,9 +15,15 @@ class DashboardRedirectView(LoginRequiredMixin, View):
         return redirect('home')
 
 
-class DoctorDashboardView(LoginRequiredMixin, TemplateView):
+class DoctorDashboardView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     template_name = 'dashboards/doctor_dashboard.html'
 
+    def test_func(self):
+        return self.request.user.role == UserRoles.DOCTOR
 
-class PatientDashboardView(LoginRequiredMixin, TemplateView):
+
+class PatientDashboardView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     template_name = 'dashboards/patient_dashboard.html'
+
+    def test_func(self):
+        return self.request.user.role == UserRoles.PATIENT

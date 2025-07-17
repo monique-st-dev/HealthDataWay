@@ -1,5 +1,27 @@
 {% extends 'includes/base.html' %}
+{% load static %}
+
 {% block title %}Patient Dashboard{% endblock %}
+
 {% block content %}
-<h2 class="text-center">Welcome, Patient {{ request.user.email }}</h2>
+<canvas id="dna-right" class="dna-canvas right"></canvas>
+
+
+<div class="container page-container text-white position-relative text-center">
+    <h2 class="mb-4 fancy-text">Welcome, {{ request.user.email }}</h2>
+    <p class="lead mb-4">Your personal health space, beautifully organized.</p>
+
+    <div class="text-start mx-auto" style="max-width: 600px;">
+        <h5 class="text-warning">Here you can:</h5>
+        <ul class="custom-list mt-3">
+            <li>Track your blood pressure, blood sugar, and pulse</li>
+            <li>View daily summaries and health progress</li>
+            <li>Access upcoming doctor visits and personalized notes</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/dna-right.js' %}"></script>
 {% endblock %}
