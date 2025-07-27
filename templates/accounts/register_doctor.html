@@ -8,14 +8,21 @@
   <canvas id="network-canvas"></canvas>
   <canvas id="dna-left" class="dna-canvas left"></canvas>
 
+<<<<<<< HEAD
 
 
   <div class="container pt-5 pb-5 mt-5 hero-content text-white">
+=======
+  <div class="container pt-5 pb-5 mt-5 hero-content text-white">
+    {% include 'includes/messages.html' %}
+
+>>>>>>> 2298801 (Cleaned .venv and added .gitignore)
     <div class="text-center mb-4">
         <h2 class="fw-bold fancy-text">Register as a Doctor</h2>
         <p class="lead">Create your professional account and start managing patients</p>
     </div>
 
+<<<<<<< HEAD
     {% if form.errors %}
     <div class="alert alert-danger">
         <ul class="mb-0">
@@ -34,15 +41,27 @@
     <form method="post" novalidate>
         {% csrf_token %}
         {{ form.role }}
+=======
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.role.as_hidden }}
+>>>>>>> 2298801 (Cleaned .venv and added .gitignore)
 
         {{ form.email|as_crispy_field }}
         {{ form.password1|as_crispy_field }}
         {{ form.password2|as_crispy_field }}
+<<<<<<< HEAD
         {{ form.diploma_number|as_crispy_field }}
         {{ form.diploma_issue_date|as_crispy_field }}
 
         <div class="text-center mt-4">
             <button type="submit" class="btn-glow-blue">Create Account</button>
+=======
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-glow-blue">Create Account</button>
+>>>>>>> 2298801 (Cleaned .venv and added .gitignore)
         </div>
     </form>
 

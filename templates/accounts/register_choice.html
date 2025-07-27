@@ -7,12 +7,26 @@
 <canvas id="network-canvas"></canvas>
 
 <div class="container page-container text-white position-relative text-center">
+<<<<<<< HEAD
+=======
+    {% include 'includes/messages.html' %}
+
+>>>>>>> 2298801 (Cleaned .venv and added .gitignore)
     <h2 class="mb-4 fancy-text">Choose Your Role</h2>
     <p class="lead mb-5">How would you like to register?</p>
 
     <div class="d-flex flex-column flex-md-row justify-content-center gap-4">
+<<<<<<< HEAD
         <a href="{% url 'register_doctor' %}" class="btn btn-lg register-btn-glow">I’m a Doctor</a>
         <a href="{% url 'register_patient' %}" class="btn btn-lg register-btn-glow-alt">I’m a Patient</a>
+=======
+        <a href="{% url 'register_doctor' %}" class="btn btn-lg register-btn-glow">
+            <i class="fas fa-user-md me-2"></i> I am a Doctor
+        </a>
+        <a href="{% url 'register_patient' %}" class="btn btn-lg register-btn-glow-alt">
+            <i class="fas fa-user me-2"></i> I am a Patient
+        </a>
+>>>>>>> 2298801 (Cleaned .venv and added .gitignore)
     </div>
 </div>
 {% endblock %}

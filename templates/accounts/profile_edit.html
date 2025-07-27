@@ -10,13 +10,22 @@
     <canvas id="dna-right" class="dna-canvas right"></canvas>
 
     <div class="container mt-0">
+<<<<<<< HEAD
+=======
+        {% include 'includes/messages.html' %}
+
+>>>>>>> 2298801 (Cleaned .venv and added .gitignore)
         <div class="page-container text-center text-white">
             <h2 class="fancy-text mb-3">Edit Your Profile</h2>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form|crispy }}
                 <div class="text-center mt-3">
+<<<<<<< HEAD
                     <button type="submit" class="button-style mb-5">Save Changes</button>
+=======
+                    <button type="submit" class="btn button-style mb-5">Save Changes</button>
+>>>>>>> 2298801 (Cleaned .venv and added .gitignore)
                 </div>
             </form>
         </div>

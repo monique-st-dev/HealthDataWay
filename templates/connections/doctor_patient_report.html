@@ -1,0 +1,72 @@
+{% extends 'includes/base.html' %}
+{% load static %}
+
+{% block title %}Patient Report{% endblock %}
+
+{% block content %}
+<main class="hero-section position-relative">
+  <canvas id="network-canvas"></canvas>
+
+  <div class="container mt-5 text-white hero-content">
+    <h2 class="fancy-text mb-2">Custom Report for {{ patient.profile.full_name|default:patient.email }}</h2>
+    <p class="lead text-info mb-4">Specialty: {{ direction|capfirst }}</p>
+
+    <form method="get" class="mb-4">
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Generate Table</button>
+    </form>
+
+    {% if metrics %}
+      <h5>Period: {{ start_date }} – {{ end_date }}</h5>
+
+      {% if direction == 'cardiology' and cardio_data %}
+        <table class="table table-striped mt-3">
+          <thead>
+            <tr>
+              <th>Date</th>
+              {% if 'pressure' in metrics %}<th>Blood Pressure</th>{% endif %}
+              {% if 'pulse' in metrics %}<th>Pulse</th>{% endif %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in cardio_data %}
+              <tr>
+                <td>{{ i.date }}</td>
+                {% if 'pressure' in metrics %}<td>{{ i.systolic }}/{{ i.diastolic }}</td>{% endif %}
+                {% if 'pulse' in metrics %}<td>{{ i.pulse }}</td>{% endif %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      {% elif direction == 'endocrinology' and sugar_data %}
+        <table class="table table-striped mt-3">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Blood Sugar (mmol/L)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in sugar_data %}
+              <tr>
+                <td>{{ i.date }}</td>
+                <td>{{ i.blood_sugar }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      {% else %}
+        <p>No records found for selected period.</p>
+      {% endif %}
+    {% endif %}
+
+    <div class="mt-4">
+      <a href="{% url 'doctor-patients-list' %}" class="btn btn-outline-light">
+        ← Back to My Patients
+      </a>
+    </div>
+  </div>
+</main>
+{% endblock %}

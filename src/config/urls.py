@@ -25,6 +25,15 @@ urlpatterns = [
     path('', include('common.urls')),
     path('accounts/', include('accounts.urls')),
     path('dashboard/', include('dashboards.urls')),
+    path('connections/', include('connections.urls')),
+    path('records/', include('records.urls')),
+    path('appointments/', include('appointments.urls')),
+    path('notifications/', include('notifications.urls')),
+    path('charts/', include('charts.urls')),
+
+
+
+
 
 ]
 

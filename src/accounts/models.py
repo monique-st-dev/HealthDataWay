@@ -5,7 +5,7 @@ from django.utils import timezone
 
 from accounts.choices import UserRoles, GenderChoices
 from accounts.managers import CustomUserManager
-from accounts.validators import validate_age_over_18, validate_diploma_issue_date
+from accounts.validators import validate_age_over_18
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
@@ -37,6 +37,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         help_text="Designates whether the user can access the admin site.",
     )
 
+    is_deleted = models.BooleanField(
+        default=False,
+        verbose_name="Deleted",
+        help_text="Marks the user as deleted instead of actually removing them.",
+    )
+
     role = models.CharField(
         max_length=10,
         choices=UserRoles.CHOICES,
@@ -65,9 +71,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = "User"
         verbose_name_plural = "Users"
+        ordering = ["email"]
 
 
 class Profile(models.Model):
+
     user = models.OneToOneField(
         CustomUser,
         on_delete=models.CASCADE,
@@ -100,44 +108,20 @@ class Profile(models.Model):
         verbose_name="Phone number",
         help_text="Optional contact number.",
     )
-    image = models.ImageField(
-        upload_to='profile_pics/',
-        blank=True,
-        null=True,
-        verbose_name="Profile picture",
-        help_text="Optional profile image.",
+
+    last_updated = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Last Updated",
+        help_text="The date and time when this profile was last modified.",
     )
 
     def __str__(self):
         return f"Profile of {self.user.email}"
 
-
-class DoctorData(models.Model):
-    user = models.OneToOneField(
-        CustomUser,
-        on_delete=models.CASCADE,
-        verbose_name="Doctor",
-        help_text="The doctor this data belongs to.",
-    )
-    diploma_number = models.CharField(
-        max_length=50,
-        verbose_name="Diploma number",
-        help_text="Official diploma number.",
-    )
-    diploma_issue_date = models.DateField(
-        verbose_name="Diploma issue date",
-        help_text="Date when the diploma was issued.",
-        validators=[validate_diploma_issue_date],
-    )
-    specialization = models.CharField(
-        max_length=100,
-        blank=True,
-        verbose_name="Specialization",
-        help_text="Medical specialization, e.g. Cardiology (optional).",
-    )
-
-    def __str__(self):
-        return f"Dr. {self.user.email} – {self.diploma_number}"
+    class Meta:
+        verbose_name = "Profile"
+        verbose_name_plural = "Profiles"
+        ordering = ["user__email"]
 
 
 class DoctorPatientLink(models.Model):
@@ -167,6 +151,7 @@ class DoctorPatientLink(models.Model):
         unique_together = ('doctor', 'patient')
         verbose_name = "Doctor–Patient Link"
         verbose_name_plural = "Doctor–Patient Links"
+        ordering = ['-created_at']
 
     def __str__(self):
         return f"{self.doctor.email} ↔ {self.patient.email}"

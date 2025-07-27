@@ -6,6 +6,7 @@
 {% block content %}
 <canvas id="dna-right" class="dna-canvas right"></canvas>
 
+<<<<<<< HEAD
 
 <div class="container page-container text-white position-relative text-center">
     <h2 class="mb-4 fancy-text">Welcome, {{ request.user.email }}</h2>
@@ -19,9 +20,107 @@
             <li>Access upcoming doctor visits and personalized notes</li>
         </ul>
     </div>
+=======
+<div class="container page-container text-white position-relative text-center py-5">
+  <h2 class="mb-4 fancy-text">Welcome, {{ request.user.email }}</h2>
+  <p class="lead mb-4">Your personal health space, beautifully organized.</p>
+
+
+  <div class="mt-4 mb-5">
+    <h5 class="text-warning mb-3">Unread Notifications:</h5>
+    {% if unread_notifications %}
+      <ul class="list-group mb-3">
+        {% for notification in unread_notifications|slice:":5" %}
+          <li class="list-group-item bg-dark text-white border-light text-start">
+            <a href="#" class="text-white text-decoration-none notification-item" data-id="{{ notification.id }}">
+              <strong>{{ notification.get_notification_type_display }}</strong><br>
+              {{ notification.message }}<br>
+              <small class="text-muted">{{ notification.created_at|date:"d.m.Y H:i" }}</small>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-muted">No new notifications.</p>
+    {% endif %}
+
+    <div class="text-center">
+      <a href="{% url 'notification_list' %}" class="btn btn-outline-light">
+        View All Notifications
+      </a>
+    </div>
+  </div>
+
+  {# Appointments #}
+  <div class="mt-5">
+    <h5 class="text-warning mb-2">Upcoming Appointments:</h5>
+    {% if upcoming_appointments %}
+      <ul class="list-group mt-3 mb-4">
+        {% for appt in upcoming_appointments %}
+          <li class="list-group-item bg-transparent text-white border-light text-start">
+            <strong>Date:</strong> {{ appt.appointment_datetime|date:"d.m.Y H:i" }}<br>
+            <strong>Doctor:</strong> {{ appt.doctor.email }}
+            {% if appt.reason %}
+              <br><strong>Reason:</strong> {{ appt.reason }}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-muted">No upcoming appointments.</p>
+    {% endif %}
+  </div>
+
+  {# Book Appointment #}
+  <div class="mt-5">
+    <h5 class="text-warning mb-2">Book Appointment:</h5>
+    {% if connections %}
+      {% for link in connections %}
+        <a href="{% url 'appointment_create' %}" class="btn btn-outline-primary w-100 mb-2">
+          Book with Dr. {{ link.doctor.email }} ({{ link.direction.name|title }})
+        </a>
+      {% endfor %}
+    {% else %}
+      <p class="text-muted">No connected doctors. Check your connections below.</p>
+    {% endif %}
+  </div>
+
+  {# Add Record #}
+  <div class="mt-5">
+    <h5 class="text-warning mb-2">Start Tracking:</h5>
+    <a href="{% url 'add_cardiology_record' %}" class="btn btn-lg btn-outline-info m-2 w-100">🫀 Add Cardiology Record</a>
+    <a href="{% url 'add_endocrinology_record' %}" class="btn btn-lg btn-outline-success m-2 w-100">Add Endocrinology Record</a>
+  </div>
+
+  {# View History #}
+  <div class="mt-5">
+    <h5 class="text-warning mb-2">View History:</h5>
+    <a href="{% url 'cardiology_records_list' %}" class="btn btn-lg btn-outline-info m-2 w-100">Cardiology Records</a>
+    <a href="{% url 'endocrinology_records_list' %}" class="btn btn-lg btn-outline-warning m-2 w-100">Endocrinology Records</a>
+  </div>
+
+    <div class="mt-5">
+        <h5 class="text-warning mb-2">View Health Table:</h5>
+        <a href="{% url 'chart_table' %}" class="btn btn-outline-light">
+        Open Table
+         </a>
+    </div>
+
+  {# Connections #}
+  <div class="mt-5">
+    <h5 class="text-warning mb-2">Doctor Connections:</h5>
+    <a href="{% url 'patient-requests' %}" class="btn btn-lg btn-outline-primary m-2 w-100">View Doctor Invitations</a>
+    <a href="{% url 'patient-connections' %}" class="btn btn-lg btn-outline-info m-2 w-100">View My Connections</a>
+  </div>
+>>>>>>> 2298801 (Cleaned .venv and added .gitignore)
 </div>
 {% endblock %}
 
 {% block page_scripts %}
+<<<<<<< HEAD
     <script src="{% static 'js/dna-right.js' %}"></script>
+=======
+<script src="{% static 'js/dna-right.js' %}"></script>
+<script src="{% static 'js/notifications.js' %}"></script>
+>>>>>>> 2298801 (Cleaned .venv and added .gitignore)
 {% endblock %}

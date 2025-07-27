@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -16,3 +17,28 @@
     </div>
 </body>
 </html>
+=======
+{% extends 'includes/base.html' %}
+{% load static %}
+
+{% block title %}404 – Page Not Found{% endblock %}
+
+{% block use_container %}
+<main class="hero-section position-relative">
+    <canvas id="network-canvas"></canvas>
+    <canvas id="dna-left" class="dna-canvas left"></canvas>
+    <canvas id="dna-right" class="dna-canvas right"></canvas>
+
+    <div class="container text-white text-center page-container">
+        <div class="display-1 fw-bold text-danger mb-3">404</div>
+        <h2 class="fancy-text mb-3">Oops! Page Not Found</h2>
+        <p class="lead text-muted mb-4">The page you are looking for doesn’t exist or has been moved.</p>
+        <a href="{% url 'home' %}" class="btn btn-glow-blue btn-lg">← Back to Home</a>
+    </div>
+</main>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/network-background.js' %}"></script>
+{% endblock %}
+>>>>>>> 2298801 (Cleaned .venv and added .gitignore)

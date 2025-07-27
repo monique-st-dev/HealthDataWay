@@ -1,0 +1,43 @@
+{% extends 'includes/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Book Appointment{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <canvas id="network-canvas"></canvas>
+    <canvas id="dna-left" class="dna-canvas left"></canvas>
+    <canvas id="dna-right" class="dna-canvas right"></canvas>
+
+    <div class="container page-container text-white position-relative text-center mt-4">
+        <h2 class="fancy-text mb-4 animate__animated animate__fadeInDown text-success">Book an Appointment</h2>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6 animate__animated animate__fadeInUp">
+                <p class="text-muted">You can only book appointments with doctors you've connected to and been approved by.</p>
+                <form method="post" class="glass-card p-4">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+
+                    <button type="submit" class="btn btn-outline-success btn-lg w-100 mt-3">
+                        Confirm Appointment
+                    </button>
+                </form>
+
+                <div class="mt-4">
+                    <a href="{% url 'appointment_list' %}" class="btn btn-outline-light w-100">
+                        Back to My Appointments
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{% static 'js/network-background.js' %}"></script>
+    <script src="{% static 'js/dna-left.js' %}"></script>
+    <script src="{% static 'js/dna-right.js' %}"></script>
+{% endblock %}

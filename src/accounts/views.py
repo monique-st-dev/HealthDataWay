@@ -1,11 +1,10 @@
 from django.contrib import messages
-from django.contrib.auth import login, get_user_model
+from django.contrib.auth import login, get_user_model, logout
 from django.contrib.auth.views import LoginView, LogoutView
-from django.http import HttpRequest, HttpResponseForbidden
-from django.views.generic import CreateView, TemplateView, UpdateView, DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import CreateView, TemplateView, UpdateView, DetailView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect, render
 
 from accounts.choices import UserRoles
 from accounts.forms import (
@@ -23,8 +22,16 @@ class CustomLoginView(LoginView):
     template_name = "accounts/login.html"
 
 
+from django.shortcuts import render
+
 class CustomLogoutView(LogoutView):
     template_name = "accounts/logout.html"
+
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        messages.success(request, "You have been logged out.")
+        return render(request, self.template_name)
+
 
 class RegisterChoiceView(TemplateView):
     template_name = "accounts/register_choice.html"
@@ -65,11 +72,14 @@ class RegisterDoctorView(CreateView):
 
 
 
-class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class ProfileEditView(LoginRequiredMixin, UpdateView):
     model = Profile
     form_class = ProfileEditForm
     template_name = "accounts/profile_edit.html"
     success_url = reverse_lazy("dashboard")
+
+    def get_object(self, queryset=None):
+        return self.request.user.profile
 
     def form_valid(self, form):
         messages.success(self.request, "Your profile has been updated successfully.")
@@ -79,8 +89,6 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         messages.error(self.request, "There was a problem updating your profile.")
         return super().form_invalid(form)
 
-    def test_func(self):
-        return self.request.user.profile.pk == self.kwargs.get("pk")
 
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
@@ -88,21 +96,21 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
     template_name = "accounts/profile_detail.html"
     context_object_name = "profile"
 
-    def get_queryset(self):
-        return Profile.objects.filter(user=self.request.user)
+    def get_object(self, queryset=None):
+        return self.request.user.profile
+
+class ProfileDeleteView(LoginRequiredMixin, DeleteView):
+    model = Profile
+    template_name = "accounts/profile-delete-page.html"
 
 
-def app_user_delete_view(request: HttpRequest, pk: int):
-    user = UserModel.objects.get(pk=pk)
+    def get_object(self, queryset=None):
+        return self.request.user.profile
 
-    if request.user.is_authenticated and request.user.pk == user.pk:
-        if request.method == "POST":
-            user.delete()
-            messages.success(request, "Your account was successfully deleted.")
-            return redirect("home")
-    else:
-        return HttpResponseForbidden()
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        logout(request)
 
-    return render(request, "accounts/profile-delete-page.html", {
-        "user": user,
-    })
+        user.delete()
+
+        return render(request, "accounts/logout.html")

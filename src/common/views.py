@@ -24,7 +24,7 @@ class DashboardRedirectView(LoginRequiredMixin, View):
         elif request.user.role == "patient":
             return redirect("patient_dashboard")
         else:
-            return redirect("home")  # fallback
+            return redirect("home")
 
 
 def custom_404(request, exception):

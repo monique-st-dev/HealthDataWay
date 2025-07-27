@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group
 from django.db.models.signals import post_save, post_migrate
 from django.dispatch import receiver
 
-from accounts.models import Profile, DoctorData
+from accounts.models import Profile
 from accounts.choices import UserRoles
 
 UserModel = get_user_model()

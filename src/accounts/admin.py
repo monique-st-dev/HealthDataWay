@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import get_user_model
 
 from accounts.forms import AppUserCreationForm, AppUserChangeForm
-from accounts.models import Profile, DoctorData, DoctorPatientLink
+from accounts.models import Profile, DoctorPatientLink
 
 from common.admin_actions import (
     assign_to_staff_group,
@@ -63,17 +63,6 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ("user", "full_name", "phone", "gender")
     list_filter = ("gender",)
     search_fields = ("user__email", "full_name", "phone")
-    ordering = ("user__email",)
-
-    def has_add_permission(self, request):
-        return False
-
-@admin.register(DoctorData)
-class DoctorDataAdmin(admin.ModelAdmin):
-    model = DoctorData
-
-    list_display = ("user", "diploma_number", "diploma_issue_date", "specialization")
-    search_fields = ("user__email", "diploma_number", "specialization")
     ordering = ("user__email",)
 
     def has_add_permission(self, request):

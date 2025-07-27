@@ -1,0 +1,59 @@
+{% extends 'includes/base.html' %}
+
+{% block title %}Endocrinology History{% endblock %}
+
+{% block use_container %}
+<main class="hero-section position-relative">
+    <canvas id="dna-right" class="dna-canvas right"></canvas>
+
+    <div class="container page-container position-relative text-white text-center">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="fancy-text mb-0">Endocrinology Records</h2>
+            <a href="{% url 'add_endocrinology_record' %}" class="btn btn-success" title="Add New Record">
+                Add Record
+            </a>
+        </div>
+
+        {% if records %}
+            <div class="table-responsive mt-3">
+                <table class="table table-striped table-hover table-bordered bg-light text-dark rounded shadow-sm">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Blood Sugar</th>
+                            <th scope="col">Notes</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in records %}
+                            <tr>
+                                <td style="white-space: nowrap;">{{ record.date }}</td>
+                                <td style="white-space: nowrap;">{{ record.time }}</td>
+                                <td>{{ record.blood_sugar }}</td>
+                                <td>{{ record.notes|default:"–" }}</td>
+                                <td class="text-nowrap">
+                                    <a href="{% url 'edit_endocrinology_record' record.pk %}"
+                                       class="btn btn-sm btn-outline-warning"
+                                       title="Edit" aria-label="Edit record">
+
+                                    </a>
+                                    <a href="{% url 'delete_endocrinology_record' record.pk %}"
+                                       class="btn btn-sm btn-outline-danger"
+                                       title="Delete" aria-label="Delete record">
+
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="alert alert-info mt-4">No records yet.</div>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'includes/base.html' %}
+{% load static %}
+
+{% block title %}Doctor Requests{% endblock %}
+
+{% block content %}
+<main class="hero-section position-relative">
+  <canvas id="network-canvas"></canvas>
+
+  <div class="container mt-5 text-white page-container">
+    <h2 class="fancy-text mb-4 text-center">Doctor Connection Requests</h2>
+
+    {% if requests %}
+      <div class="table-responsive">
+        <table class="table table-dark table-bordered table-hover text-center align-middle">
+          <thead>
+            <tr>
+              <th>Doctor</th>
+              <th>Email</th>
+              <th>Direction</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for request in requests %}
+              <tr>
+                <td>{{ request.doctor.profile.full_name|default:request.doctor.email }}</td>
+                <td>{{ request.doctor.email }}</td>
+                <td class="text-capitalize">{{ request.direction }}</td>
+                <td>
+                  <form method="post" action="{% url 'patient-respond' request.pk %}" class="d-inline">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="approve">
+                    <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                  </form>
+                  <form method="post" action="{% url 'patient-respond' request.pk %}" class="d-inline ms-2">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="decline">
+                    <button type="submit" class="btn btn-sm btn-secondary">Decline</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="alert alert-info mt-4 text-center">You have no pending connection requests.</div>
+    {% endif %}
+  </div>
+</main>
+{% endblock %}

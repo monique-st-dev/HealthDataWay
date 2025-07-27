@@ -1,0 +1,45 @@
+{% extends 'includes/base.html' %}
+
+{% block content %}
+<div class="page-container">
+  <h2 class="text-center mb-4">Health Data Filter</h2>
+  <form method="post" class="mb-5">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary mt-2">Show table</button>
+  </form>
+
+  {% if metrics %}
+    <h4>Data for the Period: {{ start_date }} – {{ end_date }}</h4>
+    <table class="table table-striped mt-4">
+      <thead>
+        <tr>
+          <th>Data</th>
+          {% if 'sugar' in metrics %}<th>Blood Sugar (mmol/L)</th>{% endif %}
+          {% if 'pressure' in metrics %}<th>Blood Pressure (mmHg)</th>{% endif %}
+          {% if 'pulse' in metrics %}<th>Pulse (bpm)</th>{% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in sugar_data|default_if_none:'' %}
+        <tr>
+          <td>{{ i.date }}</td>
+          {% if 'sugar' in metrics %}<td>{{ i.blood_sugar }}</td>{% endif %}
+          {% if 'pressure' in metrics %}<td></td>{% endif %}
+          {% if 'pulse' in metrics %}<td></td>{% endif %}
+        </tr>
+        {% endfor %}
+
+        {% for i in cardio_data|default_if_none:'' %}
+        <tr>
+          <td>{{ i.date }}</td>
+          {% if 'sugar' in metrics %}<td></td>{% endif %}
+          {% if 'pressure' in metrics %}<td>{{ i.systolic }}/{{ i.diastolic }}</td>{% endif %}
+          {% if 'pulse' in metrics %}<td>{{ i.pulse }}</td>{% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+</div>
+{% endblock %}

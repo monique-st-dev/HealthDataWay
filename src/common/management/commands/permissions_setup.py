@@ -1,7 +1,8 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
-from accounts.models import CustomUser, Profile, DoctorData, DoctorPatientLink
+from accounts.models import CustomUser, Profile, DoctorPatientLink
+
 
 class Command(BaseCommand):
     help = "Assigns predefined permissions to Staff group"
@@ -10,11 +11,9 @@ class Command(BaseCommand):
         try:
             staff_group, _ = Group.objects.get_or_create(name="Staff")
 
-
             models_and_perms = {
                 CustomUser: ['view'],
                 Profile: ['view', 'change'],
-                DoctorData: ['view'],
                 DoctorPatientLink: ['view'],
             }
 

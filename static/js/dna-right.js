@@ -6,9 +6,15 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.width = 200;
     canvas.height = window.innerHeight;
 
+<<<<<<< HEAD
     const totalLines = 100; // ← по-дълга ДНК
     const spacing = 10;
     const amplitude = 35; // ← по-широка
+=======
+    const totalLines = 100;
+    const spacing = 10;
+    const amplitude = 35;
+>>>>>>> 2298801 (Cleaned .venv and added .gitignore)
 
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -19,7 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const y = i * spacing;
 
             const phase = time + i * 0.19;
+<<<<<<< HEAD
             const offset = -Math.sin(phase) * amplitude;  // ← обръщаме посоката!
+=======
+            const offset = -Math.sin(phase) * amplitude;
+>>>>>>> 2298801 (Cleaned .venv and added .gitignore)
 
             const xLeft = centerX - offset;
             const xRight = centerX + offset;
@@ -28,7 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const leftColor = isEven ? "#ffd76a" : "#a7d8ec";
             const rightColor = isEven ? "#a7d8ec" : "#ffd76a";
 
+<<<<<<< HEAD
             // Линия
+=======
+
+>>>>>>> 2298801 (Cleaned .venv and added .gitignore)
             ctx.beginPath();
             ctx.moveTo(xLeft, y);
             ctx.lineTo(xRight, y);
@@ -36,7 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.lineWidth = 1;
             ctx.stroke();
 
+<<<<<<< HEAD
             // Точка със сияние
+=======
+
+>>>>>>> 2298801 (Cleaned .venv and added .gitignore)
             function drawPoint(x, y, color) {
                 ctx.beginPath();
                 ctx.arc(x, y, 2, 0, Math.PI * 2);
