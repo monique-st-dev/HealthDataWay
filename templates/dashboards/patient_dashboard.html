@@ -6,21 +6,6 @@
 {% block content %}
 <canvas id="dna-right" class="dna-canvas right"></canvas>
 
-<<<<<<< HEAD
-
-<div class="container page-container text-white position-relative text-center">
-    <h2 class="mb-4 fancy-text">Welcome, {{ request.user.email }}</h2>
-    <p class="lead mb-4">Your personal health space, beautifully organized.</p>
-
-    <div class="text-start mx-auto" style="max-width: 600px;">
-        <h5 class="text-warning">Here you can:</h5>
-        <ul class="custom-list mt-3">
-            <li>Track your blood pressure, blood sugar, and pulse</li>
-            <li>View daily summaries and health progress</li>
-            <li>Access upcoming doctor visits and personalized notes</li>
-        </ul>
-    </div>
-=======
 <div class="container page-container text-white position-relative text-center py-5">
   <h2 class="mb-4 fancy-text">Welcome, {{ request.user.email }}</h2>
   <p class="lead mb-4">Your personal health space, beautifully organized.</p>
@@ -112,15 +97,10 @@
     <a href="{% url 'patient-requests' %}" class="btn btn-lg btn-outline-primary m-2 w-100">View Doctor Invitations</a>
     <a href="{% url 'patient-connections' %}" class="btn btn-lg btn-outline-info m-2 w-100">View My Connections</a>
   </div>
->>>>>>> 2298801 (Cleaned .venv and added .gitignore)
 </div>
 {% endblock %}
 
 {% block page_scripts %}
-<<<<<<< HEAD
-    <script src="{% static 'js/dna-right.js' %}"></script>
-=======
 <script src="{% static 'js/dna-right.js' %}"></script>
 <script src="{% static 'js/notifications.js' %}"></script>
->>>>>>> 2298801 (Cleaned .venv and added .gitignore)
 {% endblock %}

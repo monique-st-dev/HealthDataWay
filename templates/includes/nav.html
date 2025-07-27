@@ -2,78 +2,6 @@
 {% load crispy_forms_tags %}
 
 <nav class="navbar navbar-expand-lg navbar-dark glass-navbar fixed-top">
-<<<<<<< HEAD
-    <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
-            <img src="{% static 'images/logo.png' %}" alt="Logo" class="navbar-logo me-2"/>
-            <span class="neon-title">HDW</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="mainNavbar">
-            {% if user.is_authenticated %}
-            {% endif %}
-
-            <ul class="navbar-nav ms-auto d-flex align-items-center gap-3 pe-4">
-
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link button-style" href="{% url 'dashboard' %}">Dashboard</a>
-                </li>
-
-                <!-- dropdown -->
-                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-bold text-white button-style" href="#" id="profileDropdown"
-                       role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Profile
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end custom-profile-dropdown animate__animated animate__fadeIn"
-                        aria-labelledby="profileDropdown">
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center gap-2"
-                               href="{% url 'profile-details' user.profile.pk %}">
-                                <i class="fas fa-id-badge text-warning"></i> <span>View Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center gap-2"
-                               href="{% url 'edit-profile' user.profile.pk %}">
-                                <i class="fas fa-edit text-warning"></i> <span>Edit Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center gap-2 text-danger"
-                               href="{% url 'delete-profile' user.profile.pk %}">
-                                <i class="fas fa-trash-alt"></i> <span>Delete Profile</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item">
-                    <form method="post" action="{% url 'logout' %}">
-                        {% csrf_token %}
-                        <button class="nav-link btn btn-link text-danger button-style" style="background: none;">Logout</button>
-                    </form>
-                </li>
-
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link login-link button-style" href="{% url 'login' %}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link button-style" href="{% url 'register_choice' %}">Register</a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
-=======
   <div class="container-fluid">
     <!-- Brand -->
     <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
@@ -148,5 +76,4 @@
       </ul>
     </div>
   </div>
->>>>>>> 2298801 (Cleaned .venv and added .gitignore)
 </nav>

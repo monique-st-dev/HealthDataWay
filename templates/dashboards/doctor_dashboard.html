@@ -4,27 +4,6 @@
 {% block title %}Doctor Dashboard{% endblock %}
 
 {% block content %}
-<<<<<<< HEAD
-<canvas id="dna-left" class="dna-canvas left"></canvas>
-
-<div class="container page-container text-white position-relative text-center">
-    <h2 class="mb-4 fancy-text">Welcome, Dr. {{ request.user.email }}</h2>
-    <p class="lead mb-4">Your personalized dashboard is coming soon.</p>
-
-    <div class="text-start mx-auto" style="max-width: 600px;">
-        <h5 class="text-warning">Soon you’ll be able to:</h5>
-        <ul class="custom-list mt-3">
-            <li>View and manage your patients</li>
-            <li>Track health data submissions</li>
-            <li>Set reminders and notes</li>
-        </ul>
-    </div>
-</div>
-{% endblock %}
-
-{% block page_scripts %}
-    <script src="{% static 'js/dna-left.js' %}"></script>
-=======
 <section class="hero-section position-relative">
   <canvas id="network-canvas"></canvas>
   <canvas id="dna-left" class="dna-canvas left"></canvas>
@@ -116,5 +95,4 @@
 {% block page_scripts %}
 <script src="{% static 'js/dna-right.js' %}"></script>
 <script src="{% static 'js/notifications.js' %}"></script>
->>>>>>> 2298801 (Cleaned .venv and added .gitignore)
 {% endblock %}

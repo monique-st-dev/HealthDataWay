@@ -9,29 +9,6 @@
 <canvas id="dna-right" class="dna-canvas right"></canvas>
 
 <div class="container mt-5">
-<<<<<<< HEAD
-    <div class="page-container text-center">
-        <h2 class="fancy-text mb-4">{{ profile.full_name }}</h2>
-
-        <div class="card p-4 bg-transparent border border-info text-start text-white" style="box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);">
-            <p><strong>Email:</strong> {{ profile.user.email }}</p>
-            <p><strong>Date of Birth:</strong> {{ profile.date_of_birth }}</p>
-            <p><strong>Gender:</strong> {{ profile.gender|capfirst }}</p>
-            <p><strong>Phone:</strong> {{ profile.phone }}</p>
-
-            {% if profile.image %}
-                <p class="text-center">
-                    <img src="{{ profile.image.url }}" alt="Profile Image" class="img-thumbnail" width="150" style="box-shadow: 0 0 12px #8ECAE6;">
-                </p>
-            {% endif %}
-        </div>
-
-        <div class="mt-4 d-flex justify-content-center gap-3">
-            <a href="{% url 'edit-profile' profile.pk %}" class="btn btn-outline-warning">Edit Profile</a>
-            <a href="{% url 'delete-profile' profile.pk %}" class="btn btn-outline-danger">Delete Profile</a>
-        </div>
-    </div>
-=======
   <div class="page-container text-center text-white">
     <h2 class="fancy-text mb-4">{{ profile.full_name }}</h2>
 
@@ -47,6 +24,5 @@
       <a href="{% url 'delete-profile' %}" class="btn btn-outline-danger">Delete Profile</a>
     </div>
   </div>
->>>>>>> 2298801 (Cleaned .venv and added .gitignore)
 </div>
 {% endblock %}

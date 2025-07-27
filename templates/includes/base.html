@@ -1,34 +1,17 @@
 {% load static %}
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html lang="en">
-  {% include 'includes/head.html' %}
-
-=======
 <html lang="en-GB">
   {% include 'includes/head.html' %}
 
 
 
->>>>>>> 2298801 (Cleaned .venv and added .gitignore)
   <body class="d-flex flex-column min-vh-100">
     {% include 'includes/nav.html' %}
 
     <main class="flex-fill d-flex flex-column">
       {% block use_container %}
         <div class="container px-3 py-4">
-<<<<<<< HEAD
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-            {% endfor %}
-          {% endif %}
-=======
           {% include 'includes/messages.html' %}
->>>>>>> 2298801 (Cleaned .venv and added .gitignore)
           {% block content %}{% endblock %}
         </div>
       {% endblock %}
@@ -40,9 +23,6 @@
       <script src="{% static 'js/network-background.js' %}"></script>
       <script src="{% static 'js/dna-left.js' %}"></script>
       <script src="{% static 'js/dna-right.js' %}"></script>
-<<<<<<< HEAD
-    {% endblock %}
-=======
       <script src="{% static 'js/auto-dismiss-alerts.js' %}"></script>
       <script src="{% static 'js/chart-generator.js' %}"></script>
 
@@ -50,6 +30,5 @@
 
 
 
->>>>>>> 2298801 (Cleaned .venv and added .gitignore)
   </body>
 </html>

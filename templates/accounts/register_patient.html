@@ -8,36 +8,14 @@
   <canvas id="network-canvas"></canvas>
   <canvas id="dna-right" class="dna-canvas right"></canvas>
 
-<<<<<<< HEAD
-
-  <div class="container pt-5 pb-5 mt-5 hero-content text-white">
-=======
   <div class="container pt-5 pb-5 mt-5 hero-content text-white">
     {% include 'includes/messages.html' %}
 
->>>>>>> 2298801 (Cleaned .venv and added .gitignore)
     <div class="text-center mb-4">
         <h2 class="fancy-text">Register as a Patient</h2>
         <p class="lead">Start tracking your health and connect with your doctor</p>
     </div>
 
-<<<<<<< HEAD
-    {% if form.errors %}
-        <div class="alert alert-danger">
-            <ul class="mb-0">
-            {% for field in form %}
-                {% for error in field.errors %}
-                    <li><strong>{{ field.label }}:</strong> {{ error }}</li>
-                {% endfor %}
-            {% endfor %}
-            {% for error in form.non_field_errors %}
-                <li>{{ error }}</li>
-            {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
-=======
->>>>>>> 2298801 (Cleaned .venv and added .gitignore)
 
     <form method="post" novalidate>
         {% csrf_token %}
