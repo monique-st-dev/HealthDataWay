@@ -1,11 +1,37 @@
+# --- Python ---
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
 
-# Django
-db.sqlite3
+# --- Django ---
+*.sqlite3
+*.log
+*.db
+media/
+.env
+.env.*
 
-# Virtual Environment
+# --- Docker ---
+*.pid
+celerybeat-schedule
+
+# --- Virtual Environments ---
 .venv/
+venv/
 
-# IDE
+# --- VSCode & PyCharm ---
+.vscode/
 .idea/
+
+# --- System files ---
+.DS_Store
+Thumbs.db
+
+# --- Tests & Coverage ---
+htmlcov/
+.coverage
+*.cover
+*.py,cover
+.cache
+pytest_cache/

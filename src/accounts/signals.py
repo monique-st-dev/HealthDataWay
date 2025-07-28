@@ -28,3 +28,5 @@ def create_related_user_data(sender, instance, created, **kwargs):
         group_name = role_to_group[instance.role]
         group, _ = Group.objects.get_or_create(name=group_name)
         instance.groups.add(group)
+
+

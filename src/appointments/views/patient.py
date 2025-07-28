@@ -9,6 +9,9 @@ from appointments.models import Appointment
 from appointments.forms import AppointmentForm
 from notifications.tasks import create_notification_task
 
+from django.db import transaction
+
+
 logger = logging.getLogger(__name__)
 
 
@@ -31,11 +34,11 @@ class AppointmentCreateView(LoginRequiredMixin, CreateView):
         doctor = form.instance.doctor
         appt_time = form.instance.appointment_datetime.strftime("%d.%m.%Y %H:%M")
 
-        create_notification_task.delay(
+        transaction.on_commit(lambda: create_notification_task.delay(
             user_id=doctor.id,
             message=f"New appointment request from {self.request.user.email} for {appt_time}.",
             notification_type="appointment_request",
-        )
+        ))
 
         logger.info(f"Appointment created by {self.request.user} for Dr. {doctor} on {appt_time}")
         messages.info(self.request, "Appointment request sent. Awaiting doctor approval.")
