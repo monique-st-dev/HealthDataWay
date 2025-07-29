@@ -7,10 +7,10 @@ services:
     restart: always
     env_file:
       - .env
-    ports:
-      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
     networks:
       - backend
 
@@ -23,8 +23,45 @@ services:
     networks:
       - backend
 
-networks:
-  backend:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: healthdataway_web
+    command: >
+      sh -c "python src/manage.py migrate &&
+             python src/manage.py collectstatic --noinput &&
+             python src/manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    networks:
+      - backend
+
+  celery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: healthdataway_celery
+    command: celery -A config worker --loglevel=info --pool=solo
+    volumes:
+      - .:/code
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    networks:
+      - backend
 
 volumes:
   postgres_data:
+
+networks:
+  backend:

@@ -17,6 +17,8 @@ media/
 celerybeat-schedule
 
 # --- Virtual Environments ---
+.env/
+env/
 .venv/
 venv/
 
