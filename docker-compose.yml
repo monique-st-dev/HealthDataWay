@@ -28,10 +28,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: healthdataway_web
-    command: >
-      sh -c "python src/manage.py migrate &&
-             python src/manage.py collectstatic --noinput &&
-             python src/manage.py runserver 0.0.0.0:8000"
+    command: python src/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
@@ -50,6 +47,8 @@ services:
       dockerfile: Dockerfile
     container_name: healthdataway_celery
     command: celery -A config worker --loglevel=info --pool=solo
+    environment:
+      - PYTHONPATH=/code/src
     volumes:
       - .:/code
     env_file:
@@ -59,6 +58,7 @@ services:
       - redis
     networks:
       - backend
+
 
 volumes:
   postgres_data:

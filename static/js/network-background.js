@@ -24,11 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-<<<<<<< HEAD
-        // Свързване на частици
-=======
 
->>>>>>> 2298801 (Cleaned .venv and added .gitignore)
         for (let i = 0; i < numParticles; i++) {
             for (let j = i + 1; j < numParticles; j++) {
                 const dx = particles[i].x - particles[j].x;
@@ -44,11 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-<<<<<<< HEAD
-        // Рисуване на частици
-=======
 
->>>>>>> 2298801 (Cleaned .venv and added .gitignore)
         for (const p of particles) {
             p.x += p.vx;
             p.y += p.vy;
