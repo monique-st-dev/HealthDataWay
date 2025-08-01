@@ -12,7 +12,7 @@
 - Patients can create appointment requests
 - Doctors can approve or reject appointments
 - Patients can record health data (blood sugar, blood pressure, pulse)
-- Internal notifications (no emails)
+- Internal notifications
 - Dockerized setup with PostgreSQL, Redis and Celery
 - Basic testing with `pytest`
 
@@ -40,6 +40,7 @@ HealthDataWay/
 ├── media/ 
 ├── manage.py
 ├── docker-compose.yml
+├── Dockerfile
 ├── requirements.txt
 ├── pytest.ini
 ├── .env.example
@@ -58,6 +59,25 @@ HealthDataWay/
 - **Bootstrap 5**, 
 - **Docker Compose** 
 - **pytest** 
+
+---
+
+## Authentication & Permissions
+
+- Only authenticated users can access health data and dashboards.
+- Role-based access:
+  - Patients can manage and visualize their own health data
+  - Doctors can only view data of patients with approved connections
+- Protected routes and logic based on user role
+
+---
+
+## REST API
+
+Available endpoints:
+- `/api/appointments/`
+- `/api/records/endocrinology/`
+- `/api/records/cardiology/`
 
 ---
 
@@ -82,9 +102,6 @@ HealthDataWay/
     docker-compose exec web python manage.py migrate
     docker-compose exec web python manage.py createsuperuser
 
-5. **Start the Celery worker:**
-    ```bash
-    docker-compose exec web celery -A config worker -l info
 
 
 Author
