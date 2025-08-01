@@ -3,11 +3,14 @@
 
 {% block title %}Privacy Policy - HealthDataWay{% endblock %}
 
-{% block content %}
+{% block use_network %}
 <canvas id="network-canvas"></canvas>
+{% endblock %}
 
+{% block content %}
 <section class="container page-container position-relative text-white">
     <h2 class="mb-4 text-center fancy-text">Privacy Policy</h2>
+
     <p>
         At <strong>HealthDataWay</strong>, we are committed to protecting your privacy and personal health data.
     </p>
@@ -15,26 +18,23 @@
     <h5 class="mt-4 text-warning">Information We Collect</h5>
     <p>
         We collect only the information necessary to provide you with our health tracking services,
-        such as your account data and health entries.
+        such as your account details and health entries.
     </p>
 
     <h5 class="mt-4 text-warning">How We Use Your Data</h5>
     <p>
-        Your data is used exclusively for your benefit and is never shared with third parties without your explicit consent.
+        Your data is used exclusively to deliver and improve our services and is never shared with third parties
+        without your explicit consent.
     </p>
 
     <h5 class="mt-4 text-warning">Your Rights</h5>
     <p>
-        You have the right to access, modify, or delete your personal information at any time.
+        You have the right to access, update, or delete your personal information at any time from your profile settings.
     </p>
 
     <p class="mt-4">
-        If you have questions, contact us through the
-        <a href="{% url 'contact' %}" class="text-info">contact form</a>.
+        For questions or concerns, please reach out to us via our
+        <a href="{% url 'contact' %}" class="text-info text-decoration-underline">contact form</a>.
     </p>
 </section>
-{% endblock %}
-
-{% block page_scripts %}
-    <script src="{% static 'js/network-background.js' %}"></script>
 {% endblock %}

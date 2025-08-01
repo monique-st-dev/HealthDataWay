@@ -5,17 +5,15 @@
 
 {% block use_container %}
 <main class="hero-section position-relative">
-  <canvas id="network-canvas"></canvas>
-  <canvas id="dna-left" class="dna-canvas left"></canvas>
+  <canvas id="dna-right" class="dna-canvas right"></canvas>
 
-  <div class="container pt-5 pb-5 mt-5 hero-content text-white">
+  <div class="container pt-5 pb-5 hero-content text-white">
     {% include 'includes/messages.html' %}
 
     <div class="text-center mb-4">
         <h2 class="fw-bold fancy-text">Register as a Doctor</h2>
         <p class="lead">Create your professional account and start managing patients</p>
     </div>
-
 
     <form method="post" novalidate>
         {% csrf_token %}

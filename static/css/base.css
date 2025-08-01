@@ -1,37 +1,49 @@
+html,
+body {
+    height: 100%;
+    scroll-behavior: smooth;
+    font-size: 15px;
+}
+
+/* ---------- HTML & Scroll ---------- */
 html {
     scroll-behavior: smooth;
     font-size: 15px;
 }
 
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+
+/* ---------- Body ---------- */
 body {
     margin: 0;
     padding: 0;
-    padding-top: 50px;
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
     background-color: #0875a3;
     font-family: 'Segoe UI', 'Roboto', sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     line-height: 1.6;
     color: white;
     font-size: 0.9rem;
 }
 
+
+/* ---------- Typography ---------- */
 p {
     font-size: 0.9rem;
     line-height: 1.5;
     margin-bottom: 0.75rem;
 }
 
-
 p.lead {
     font-size: 1rem;
     font-weight: 400;
 }
-
 
 h1 { font-size: 2.2rem; }
 h2 { font-size: 1.8rem; }
@@ -41,16 +53,23 @@ h5 { font-size: 1rem; }
 h6 { font-size: 0.85rem; }
 
 
-.container {
+/* Custom Containers (no Bootstrap conflict) */
+.narrow-container {
     max-width: 580px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
-@media (max-width: 480px) {
-    html {
-        font-size: 14px;
-    }
+.medium-container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
 
-    .container {
-        padding: 0 1rem;
-    }
+
+/*    Page Wrapper – Flexible Layout Control */
+.page-container {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    min-height: calc(100vh - 100px);
 }

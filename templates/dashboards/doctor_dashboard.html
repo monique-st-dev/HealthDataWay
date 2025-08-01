@@ -3,18 +3,18 @@
 
 {% block title %}Doctor Dashboard{% endblock %}
 
-{% block content %}
-<section class="hero-section position-relative">
-  <canvas id="network-canvas"></canvas>
-  <canvas id="dna-left" class="dna-canvas left"></canvas>
-  <canvas id="dna-right" class="dna-canvas right"></canvas>
+{% block use_network %}
+<canvas id="dna-right" class="dna-canvas right"></canvas>
+{% endblock %}}
 
-  <div class="container text-white py-5 page-container">
+{% block use_container %}
+<section class="hero-section position-relative">
+  <div class="medium-container text-white py-5 page-container">
     <h2 class="fancy-text text-center mb-4">Welcome, Dr. {{ request.user.email }}</h2>
 
     <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
       <a href="{% url 'doctor-add-patient' %}" class="btn btn-outline-info">Send Connection</a>
-      <a href="{% url 'doctor-patients-list' %}" class="btn btn-outline-primary"> My Patients</a>
+      <a href="{% url 'doctor-patients-list' %}" class="btn btn-outline-primary">My Patients</a>
     </div>
 
     <div class="row text-center">
@@ -46,7 +46,6 @@
       </div>
     </div>
 
-
     <hr class="bg-white my-4">
     <h4 class="mb-3 text-center text-warning">Unread Notifications</h4>
     {% if unread_notifications %}
@@ -66,7 +65,7 @@
     {% endif %}
 
     <div class="text-center mb-4">
-      <a href="{% url 'notification_list' %}" class="btn btn-outline-light"> View All Notifications</a>
+      <a href="{% url 'notification_list' %}" class="btn btn-outline-light">View All Notifications</a>
     </div>
 
     <hr class="bg-white my-4">
@@ -93,6 +92,7 @@
 {% endblock %}
 
 {% block page_scripts %}
-<script src="{% static 'js/dna-right.js' %}"></script>
-<script src="{% static 'js/notifications.js' %}"></script>
+  {{ block.super }}
+  <script src="{% static 'js/dna-right.js' %}"></script>
+  <script src="{% static 'js/notifications.js' %}"></script>
 {% endblock %}

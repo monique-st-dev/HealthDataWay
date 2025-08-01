@@ -1,4 +1,8 @@
-/*NAVBAR */
+/* =======================================
+   Navbar, Footer, Page Structure
+======================================= */
+
+/* ---------- Navbar Glass Effect ---------- */
 .glass-navbar {
     background-color: rgba(8, 117, 163, 0.3);
     backdrop-filter: blur(10px);
@@ -13,9 +17,9 @@
     z-index: 1100;
     display: flex;
     align-items: center;
-
 }
 
+/* ---------- Navbar Brand Title ---------- */
 .neon-title {
     font-family: 'Lobster', cursive;
     color: #8ECAE6;
@@ -23,20 +27,34 @@
     text-shadow: 0 0 6px #8ECAE6, 0 0 12px #219EBC;
 }
 
-.navbar-nav .nav-link::after{
+/* ---------- Navbar Links ---------- */
+.navbar-nav .nav-link {
     font-weight: 500;
     color: white !important;
     font-size: 0.82rem;
-    position: relative;
-    transition: all 0.3s ease;
     padding-top: 0.5rem;
     padding-bottom: 0.25rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Optional: underline hover effect */
+.navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: #FFB703;
+    transition: width 0.3s ease;
 }
 
 .navbar-nav .nav-link:hover::after {
     width: 100%;
 }
 
+/* ---------- Logo in Navbar ---------- */
 .navbar-logo {
     width: 20px;
     height: 20px;
@@ -45,7 +63,7 @@
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
 }
 
-/* FOOTER */
+/* ---------- Footer Glass Effect ---------- */
 .glass-footer {
     background-color: transparent !important;
     backdrop-filter: blur(10px);
@@ -73,11 +91,15 @@
     text-shadow: 0 0 6px #FB8500;
 }
 
-main.flex-fill {
-    min-height: calc(100vh - 60px);
+/* ---------- Page Container ---------- */
+.page-container {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    min-height: calc(100vh - 100px);
 }
 
 
+/* ---------- Responsive Layout ---------- */
 @media (max-width: 768px) {
     .navbar-nav .nav-link {
         font-size: 0.95rem;
@@ -86,7 +108,6 @@ main.flex-fill {
 
     .glass-footer {
         font-size: 0.8rem;
-        text-align: center;
     }
 
     .glass-footer a {
@@ -108,8 +129,3 @@ main.flex-fill {
         font-size: 1rem;
     }
 }
-
-.page-container {
-    box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
-}
-

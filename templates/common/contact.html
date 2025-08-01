@@ -3,18 +3,23 @@
 
 {% block title %}Contact - HealthDataWay{% endblock %}
 
-{% block content %}
+{% block use_network %}
 <canvas id="network-canvas"></canvas>
+{% endblock %}
 
-<section class="container page-container position-relative text-white">
-    <h2 class="text-center mb-4 fancy-text">Contact Us</h2>
-    <p class="lead text-center mb-5">
+{% block content %}
+<section class="container page-container position-relative text-white text-center mt-5">
+    <h2 class="mb-4 fancy-text text-info animate__animated animate__fadeInDown">
+        Contact Us
+    </h2>
+
+    <p class="lead mb-5 animate__animated animate__fadeInUp">
         We'd love to hear from you. Reach out to us using the information below.
     </p>
 
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <ul class="list-group list-group-flush">
+    <div class="row justify-content-center animate__animated animate__fadeIn">
+        <div class="col-md-6 text-start">
+            <ul class="list-group list-group-flush glass-card p-4">
                 <li class="list-group-item bg-transparent text-white border-0">
                     <strong>Address:</strong> 12 Health Street, Sofia, Bulgaria
                 </li>
@@ -26,14 +31,10 @@
                     <a href="mailto:support@healthdataway.com" class="text-info">support@healthdataway.com</a>
                 </li>
                 <li class="list-group-item bg-transparent text-white border-0">
-                    <strong>Working:</strong> Monday – Friday, 09:00 – 17:00
+                    <strong>Working Hours:</strong> Monday – Friday, 09:00 – 17:00
                 </li>
             </ul>
         </div>
     </div>
 </section>
-{% endblock %}
-
-{% block page_scripts %}
-    <script src="{% static 'js/network-background.js' %}"></script>
 {% endblock %}

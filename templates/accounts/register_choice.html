@@ -3,26 +3,26 @@
 
 {% block title %}Choose Registration Type{% endblock %}
 
-{% block content %}
-<canvas id="network-canvas"></canvas>
+{% block use_container %}
+<main class="hero-section position-relative">
+    <canvas id="network-canvas"></canvas>
+    <canvas id="dna-left" class="dna-canvas left"></canvas>
+    <canvas id="dna-right" class="dna-canvas right"></canvas>
 
-<div class="container page-container text-white position-relative text-center">
-    {% include 'includes/messages.html' %}
+    <div class="container text-white text-center">
+        {% include 'includes/messages.html' %}
 
-    <h2 class="mb-4 fancy-text">Choose Your Role</h2>
-    <p class="lead mb-5">How would you like to register?</p>
+        <h2 class="mb-4 fancy-text">Choose Your Role</h2>
+        <p class="lead mb-5">How would you like to register?</p>
 
-    <div class="d-flex flex-column flex-md-row justify-content-center gap-4">
-        <a href="{% url 'register_doctor' %}" class="btn btn-lg register-btn-glow">
-            <i class="fas fa-user-md me-2"></i> I am a Doctor
-        </a>
-        <a href="{% url 'register_patient' %}" class="btn btn-lg register-btn-glow-alt">
-            <i class="fas fa-user me-2"></i> I am a Patient
-        </a>
+        <div class="d-flex flex-column flex-md-row justify-content-center gap-4">
+            <a href="{% url 'register_doctor' %}" class="btn btn-lg register-btn-glow">
+                <i class="fas fa-user-md me-2"></i> I am a Doctor
+            </a>
+            <a href="{% url 'register_patient' %}" class="btn btn-lg register-btn-glow-alt">
+                <i class="fas fa-user me-2"></i> I am a Patient
+            </a>
+        </div>
     </div>
-</div>
-{% endblock %}
-
-{% block page_scripts %}
-    <script src="{% static 'js/network-background.js' %}"></script>
+</main>
 {% endblock %}

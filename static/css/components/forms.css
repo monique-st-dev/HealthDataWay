@@ -1,10 +1,11 @@
-form {
+/* ---------- Form Layout ---------- */
+.form-wrapper {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
 
-/* FORM INPUTS */
+/* ---------- Form Inputs ---------- */
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -39,12 +40,14 @@ textarea:focus-visible {
 }
 
 
+/* ---------- Labels ---------- */
 label {
   color: #ffffff;
   font-weight: 500;
 }
 
-/* ERROR MESSAGES */
+
+/* ---------- Messages ---------- */
 .errorlist,
 .helptext,
 .text-danger {
@@ -52,20 +55,22 @@ label {
   font-size: 0.9rem;
 }
 
-/* SUCCESS MESSAGES */
 .text-success {
   color: #8EC07C;
 }
 
 
+/* ---------- Fieldset Reset ---------- */
 fieldset {
   border: none;
   padding: 0;
   margin: 0;
 }
 
+
+/*   Responsive Form Sizing */
 @media (max-width: 768px) {
-  form {
+  .form-wrapper {
     gap: 1rem;
   }
 

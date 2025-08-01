@@ -1,4 +1,4 @@
-<footer class="glass-footer text-white mt-auto py-3">
+<footer class="glass-footer text-white mt-auto py-3" role="contentinfo">
   <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center footer-container">
 
     <!-- Copyright -->
@@ -6,13 +6,12 @@
       © 2025 <strong>HealthDataWay</strong>. All rights reserved.
     </p>
 
-    <!-- Links -->
+    <!-- Navigation Links -->
     <div class="footer-links d-flex gap-3 justify-content-center justify-content-md-end">
-      <a href="{% url 'home' %}" class="text-white text-decoration-none">Home</a>
-      <a href="{% url 'about' %}" class="text-white text-decoration-none">About</a>
-      <a href="{% url 'contact' %}" class="text-white text-decoration-none">Contact</a>
-      <a href="{% url 'privacy' %}" class="text-white text-decoration-none">Privacy</a>
+      <a href="{% url 'home' %}" class="text-white text-decoration-none" aria-label="Home page link">Home</a>
+      <a href="{% url 'about' %}" class="text-white text-decoration-none" aria-label="About page link">About</a>
+      <a href="{% url 'contact' %}" class="text-white text-decoration-none" aria-label="Contact page link">Contact</a>
+      <a href="{% url 'privacy' %}" class="text-white text-decoration-none" aria-label="Privacy policy link">Privacy</a>
     </div>
-
   </div>
 </footer>

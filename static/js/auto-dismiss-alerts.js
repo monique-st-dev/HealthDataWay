@@ -1,19 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const alerts = document.querySelectorAll('.alert');
+  const alerts = document.querySelectorAll('.alert.auto-dismiss');
 
   alerts.forEach((alert) => {
-
-    if (!alert.classList.contains('alert-dismissible')) return;
-
     setTimeout(() => {
-
-      alert.style.transition = 'opacity 0.5s ease-out';
-      alert.style.opacity = '0';
-
+      alert.classList.remove('show'); // ще активира fade-out чрез Bootstrap
+      alert.classList.add('fade');
 
       setTimeout(() => {
-        alert.remove();
-      }, 500);
-    }, 4000);
+        if (alert && alert.parentNode) {
+          alert.parentNode.removeChild(alert);
+        }
+      }, 500); // време за анимацията
+    }, 4000); // време преди да започне изчезване
   });
 });

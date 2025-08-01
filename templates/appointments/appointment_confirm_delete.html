@@ -1,28 +1,30 @@
 {% extends 'includes/base.html' %}
 {% block title %}Cancel Appointment{% endblock %}
 
+{% block use_dna_left %}
+<canvas id="dna-left" class="dna-canvas left"></canvas>
+{% endblock %}
+
+{% block use_dna_right %}
+<canvas id="dna-right" class="dna-canvas right"></canvas>
+{% endblock %}
+
 {% block content %}
-<section class="hero-section">
-    <canvas id="network-canvas"></canvas>
-    <canvas id="dna-left" class="dna-canvas left"></canvas>
-    <canvas id="dna-right" class="dna-canvas right"></canvas>
+<div class="container mt-5">
+    <div class="page-container text-center text-white glass-card p-4 animate__animated animate__fadeIn">
+        <h2 class="fancy-text mb-4 animate__fadeInDown">Cancel Appointment</h2>
 
-    <div class="container mt-5">
-        <div class="page-container text-center text-white glass-card p-4 animate__animated animate__fadeIn">
-            <h2 class="fancy-text mb-4 animate__fadeInDown">Cancel Appointment</h2>
+        <p class="lead animate__fadeInUp">
+            Are you sure you want to cancel the appointment with
+            <strong>{{ object.doctor.email }}</strong> on
+            <strong>{{ object.appointment_datetime|date:"d.m.Y H:i" }}</strong>?
+        </p>
 
-            <p class="lead animate__fadeInUp">
-                Are you sure you want to cancel the appointment with
-                <strong>{{ object.doctor.email }}</strong> on
-                <strong>{{ object.appointment_datetime|date:"d.m.Y H:i" }}</strong>?
-            </p>
-
-            <form method="post" class="mt-4 animate__fadeInUp">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger px-4 me-2">Yes, cancel</button>
-                <a href="{% url 'appointment_list' %}" class="btn btn-outline-info px-4">No, go back</a>
-            </form>
-        </div>
+        <form method="post" class="mt-4 animate__fadeInUp">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger px-4 me-2">Yes, cancel</button>
+            <a href="{% url 'appointment_list' %}" class="btn btn-outline-info px-4">No, go back</a>
+        </form>
     </div>
-</section>
+</div>
 {% endblock %}

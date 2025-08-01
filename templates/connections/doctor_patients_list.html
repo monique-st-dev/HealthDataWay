@@ -3,16 +3,18 @@
 
 {% block title %}My Patients{% endblock %}
 
-{% block content %}
-<section class="hero-section">
-  <canvas id="network-canvas"></canvas>
+{% block use_network %}
+<canvas id="network-canvas"></canvas>
+{% endblock %}
 
+{% block use_container %}
+<section class="hero-section">
   <div class="container mt-5 text-white hero-content">
     <h2 class="fancy-text mb-4 text-center">My Patient Connections</h2>
 
     {% if links %}
       <div class="table-responsive">
-        <table class="table table-dark table-bordered table-hover align-middle">
+        <table class="table table-dark table-bordered table-hover align-middle text-center">
           <thead>
             <tr>
               <th>Patient</th>
@@ -24,7 +26,7 @@
           <tbody>
             {% for link in links %}
               <tr>
-                <td>
+                <td class="text-start">
                   {% if link.patient.profile.full_name %}
                     <strong>{{ link.patient.profile.full_name }}</strong><br>
                     <small class="text-muted">{{ link.patient.email }}</small>
@@ -36,7 +38,7 @@
                 <td>{{ link.status|capfirst }}</td>
                 <td>
                   {% if link.status == 'approved' %}
-                    <div class="d-flex flex-column flex-md-row gap-2">
+                    <div class="d-flex flex-column flex-md-row gap-2 justify-content-center">
                       <form method="post" action="{% url 'doctor-cancel-link' link.pk %}">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-sm btn-outline-danger">Cancel</button>
@@ -55,7 +57,9 @@
         </table>
       </div>
     {% else %}
-      <div class="alert alert-info mt-4 text-center">You have no patient connections yet.</div>
+      <div class="alert alert-info mt-4 text-center">
+        You have no patient connections yet.
+      </div>
     {% endif %}
   </div>
 </section>

@@ -3,12 +3,14 @@
 
 {% block title %}Delete Profile{% endblock %}
 
-{% block content %}
+{% block use_network %}
 <canvas id="network-canvas"></canvas>
-<canvas id="dna-left" class="dna-canvas left"></canvas>
 <canvas id="dna-right" class="dna-canvas right"></canvas>
+<canvas id="dna-left" class="dna-canvas left"></canvas>
+{% endblock %}
 
-<div class="container mt-5">
+{% block content %}
+<div class="container">
   <div class="page-container text-center text-white">
     <h2 class="fancy-text mb-4">Delete Profile</h2>
 
@@ -27,3 +29,4 @@
   </div>
 </div>
 {% endblock %}
+

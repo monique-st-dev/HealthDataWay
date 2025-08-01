@@ -1,21 +1,16 @@
 {% extends 'includes/base.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}Register as Patient{% endblock %}
-
 {% block use_container %}
 <main class="hero-section position-relative">
-  <canvas id="network-canvas"></canvas>
-  <canvas id="dna-right" class="dna-canvas right"></canvas>
-
-  <div class="container pt-5 pb-5 mt-5 hero-content text-white">
+<canvas id="dna-left" class="dna-canvas left"></canvas>
+  <div class="container pt-5 pb-5 hero-content text-white">
     {% include 'includes/messages.html' %}
 
     <div class="text-center mb-4">
         <h2 class="fancy-text">Register as a Patient</h2>
         <p class="lead">Start tracking your health and connect with your doctor</p>
     </div>
-
 
     <form method="post" novalidate>
         {% csrf_token %}

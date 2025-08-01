@@ -1,19 +1,27 @@
-
+/* ===========================
+   Global Base Styles
+=========================== */
 @import url('base.css');
 
-
-@import url('components/buttons.css');
-
-
-@import url('home-page.css');
-
-
-@import url('components/dropdowns.css');
-
-
+/* ===========================
+   Layout Structure
+=========================== */
 @import url('components/layout.css');
 
-
+/* ===========================
+   Core UI Components
+=========================== */
+@import url('components/buttons.css');
 @import url('components/forms.css');
+@import url('components/dropdowns.css');
+@import url('components/alerts.css');
 
-@import url('./components/canvas.css');
+/* ===========================
+   Canvas Backgrounds
+=========================== */
+@import url('components/canvas.css');
+
+/* ===========================
+   Page-Specific Styles
+=========================== */
+@import url('home-page.css');

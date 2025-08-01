@@ -2,11 +2,11 @@
 
 {% block title %}Logged Out{% endblock %}
 
-{% block content %}
+{% block use_network %}
 <canvas id="network-canvas"></canvas>
-<canvas id="dna-left" class="dna-canvas left"></canvas>
-<canvas id="dna-right" class="dna-canvas right"></canvas>
+{% endblock %}
 
+{% block content %}
 <div class="container mt-5 text-white">
     <div class="page-container text-center">
         <h2 class="fancy-text mb-3">You have been logged out.</h2>

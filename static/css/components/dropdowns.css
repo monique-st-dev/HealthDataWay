@@ -1,3 +1,4 @@
+/* ---------- Dropdown Container ---------- */
 .custom-profile-dropdown {
     background: rgba(8, 117, 163, 0.95);
     border: 1px solid rgba(0, 255, 255, 0.3);
@@ -11,6 +12,7 @@
     z-index: 1050;
 }
 
+/* ---------- Dropdown Items ---------- */
 .custom-profile-dropdown .dropdown-item {
     color: #ffffff;
     font-weight: 500;
@@ -34,11 +36,13 @@
     color: #FFD700;
 }
 
+/* ---------- Divider ---------- */
 .custom-profile-dropdown .dropdown-divider {
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     margin: 8px 0;
 }
 
+/* ---------- Danger Item ---------- */
 .custom-profile-dropdown .dropdown-item.text-danger {
     color: #FF6B6B;
 }
@@ -52,18 +56,23 @@
     background: rgba(255, 0, 0, 0.05);
 }
 
+
+/* ---------- Animation ---------- */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
+/* =======================================
+   Responsive Tweaks
+======================================= */
 @media (max-width: 768px) {
     .custom-profile-dropdown {
         min-width: 160px;

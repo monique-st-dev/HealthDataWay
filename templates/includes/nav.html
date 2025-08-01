@@ -3,18 +3,18 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark glass-navbar fixed-top">
   <div class="container-fluid">
-    <!-- Brand -->
+    <!-- Logo -->
     <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
-      <img src="{% static 'images/logo.png' %}" alt="Logo" class="navbar-logo me-2" />
+      <img src="{% static 'images/logo.png' %}" alt="HDW Logo" class="navbar-logo me-2" />
       <span class="neon-title">HDW</span>
     </a>
 
-    <!-- Burger Toggle -->
+    <!-- Toggle button (burger menu) -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Navigation Links -->
+    <!-- Navigation links -->
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ms-auto d-flex align-items-center gap-3 pe-4">
 
@@ -24,7 +24,7 @@
             <a class="nav-link button-style" href="{% url 'dashboard' %}">Dashboard</a>
           </li>
 
-          <!-- Profile Dropdown -->
+          <!-- Profile dropdown -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle fw-bold text-white button-style" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Profile
@@ -54,11 +54,13 @@
             </ul>
           </li>
 
-          <!-- Logout -->
+          <!-- Logout button -->
           <li class="nav-item">
             <form method="post" action="{% url 'logout' %}" class="d-inline">
               {% csrf_token %}
-              <button class="nav-link btn btn-link text-danger button-style p-0" style="background: none;">Logout</button>
+              <button type="submit" class="nav-link btn btn-link text-danger button-style p-0" style="background: none;" aria-label="Logout">
+                Logout
+              </button>
             </form>
           </li>
 

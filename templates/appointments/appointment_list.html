@@ -3,61 +3,58 @@
 
 {% block title %}My Appointments{% endblock %}
 
-{% block content %}
-<section class="hero-section">
-    <canvas id="network-canvas"></canvas>
-    <canvas id="dna-left" class="dna-canvas left"></canvas>
-    <canvas id="dna-right" class="dna-canvas right"></canvas>
 
-    <div class="container page-container text-white position-relative text-center mt-4">
-        <h2 class="mb-4 fancy-text text-info animate__animated animate__fadeInDown">
-            My Appointments
-        </h2>
-
-        {% if appointments %}
-            <div class="row justify-content-center animate__animated animate__fadeInUp">
-                <div class="col-md-8 text-start">
-                    <ul class="list-group glass-card">
-                        {% for appt in appointments %}
-                            <li class="list-group-item bg-transparent text-light border-info mb-3">
-                                <div class="d-flex justify-content-between align-items-center flex-wrap">
-                                    <div>
-                                        <strong>Date:</strong> {{ appt.appointment_datetime|date:"d.m.Y H:i" }}<br>
-                                        <strong>Doctor:</strong> {{ appt.doctor.email }}<br>
-                                        {% if appt.reason %}
-                                            <strong>Reason:</strong> {{ appt.reason }}<br>
-                                        {% endif %}
-                                        <span class="badge bg-success mt-2">Confirmed</span>
-                                    </div>
-                                    <div class="text-end mt-2 mt-md-0">
-                                        <form method="post" action="{% url 'appointment_cancel' appt.pk %}">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-sm btn-outline-danger">
-                                                Cancel
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        {% else %}
-            <p class="text-muted animate__animated animate__fadeIn">You have no upcoming appointments.</p>
-        {% endif %}
-
-        <div class="mt-5">
-            <a href="{% url 'appointment_create' %}" class="btn btn-outline-success btn-lg">
-                Book New Appointment
-            </a>
-        </div>
-    </div>
-</section>
+{% block use_dna_left %}
+<canvas id="dna-left" class="dna-canvas left"></canvas>
 {% endblock %}
 
-{% block page_scripts %}
-    <script src="{% static 'js/network-background.js' %}"></script>
-    <script src="{% static 'js/dna-left.js' %}"></script>
-    <script src="{% static 'js/dna-right.js' %}"></script>
+{% block use_dna_right %}
+<canvas id="dna-right" class="dna-canvas right"></canvas>
+{% endblock %}
+
+{% block content %}
+<div class="container page-container text-white position-relative text-center mt-4">
+    <h2 class="mb-4 fancy-text text-info animate__animated animate__fadeInDown">
+        My Appointments
+    </h2>
+
+    {% if appointments %}
+        <div class="row justify-content-center animate__animated animate__fadeInUp">
+            <div class="col-md-8 text-start">
+                <ul class="list-group glass-card">
+                    {% for appt in appointments %}
+                        <li class="list-group-item bg-transparent text-light border-info mb-3">
+                            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                                <div>
+                                    <strong>Date:</strong> {{ appt.appointment_datetime|date:"d.m.Y H:i" }}<br>
+                                    <strong>Doctor:</strong> {{ appt.doctor.email }}<br>
+                                    {% if appt.reason %}
+                                        <strong>Reason:</strong> {{ appt.reason }}<br>
+                                    {% endif %}
+                                    <span class="badge bg-success mt-2">Confirmed</span>
+                                </div>
+                                <div class="text-end mt-2 mt-md-0">
+                                    <form method="post" action="{% url 'appointment_cancel' appt.pk %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            Cancel
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% else %}
+        <p class="text-muted animate__animated animate__fadeIn">You have no upcoming appointments.</p>
+    {% endif %}
+
+    <div class="mt-5">
+        <a href="{% url 'appointment_create' %}" class="btn btn-outline-success btn-lg">
+            Book New Appointment
+        </a>
+    </div>
+</div>
 {% endblock %}

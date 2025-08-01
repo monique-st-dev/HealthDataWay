@@ -3,11 +3,13 @@
 
 {% block title %}Doctor Requests{% endblock %}
 
-{% block content %}
-<main class="hero-section position-relative">
-  <canvas id="network-canvas"></canvas>
+{% block use_network %}
+<canvas id="network-canvas"></canvas>
+{% endblock %}
 
-  <div class="container mt-5 text-white page-container">
+{% block use_container %}
+<section class="hero-section">
+  <div class="container mt-5 text-white hero-content">
     <h2 class="fancy-text mb-4 text-center">Doctor Connection Requests</h2>
 
     {% if requests %}
@@ -48,5 +50,5 @@
       <div class="alert alert-info mt-4 text-center">You have no pending connection requests.</div>
     {% endif %}
   </div>
-</main>
+</section>
 {% endblock %}

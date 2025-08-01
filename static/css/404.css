@@ -1,3 +1,4 @@
+/* ---------- Layout ---------- */
 body.not-found-body {
     margin: 0;
     padding: 0;
@@ -19,6 +20,8 @@ body.not-found-body {
     width: 100%;
 }
 
+
+/* ---------- Content Box ---------- */
 .neon-box {
     text-align: center;
     background: rgba(2, 48, 71, 0.7);
@@ -30,8 +33,11 @@ body.not-found-body {
         0 0 40px #023047 inset;
     color: #ffffff;
     animation: glow 1.5s infinite alternate;
+    max-width: 90vw;
 }
 
+
+/* ---------- Text Styles ---------- */
 .error-code {
     font-size: 6rem;
     margin-bottom: 1rem;
@@ -44,6 +50,8 @@ body.not-found-body {
     margin-bottom: 2rem;
 }
 
+
+/* ---------- Back Button ---------- */
 .back-home {
     font-size: 1.1rem;
     padding: 0.7rem 1.5rem;
@@ -59,12 +67,8 @@ body.not-found-body {
     color: #023047;
 }
 
-.neon-box {
-    max-width: 90vw;
-}
 
-
-
+/* ---------- Glow Animation ---------- */
 @keyframes glow {
     from {
         box-shadow: 0 0 20px #219EBC, 0 0 40px #023047 inset;
@@ -74,6 +78,8 @@ body.not-found-body {
     }
 }
 
+
+/* ---------- Responsive Design ---------- */
 @media (max-width: 768px) {
     .neon-box {
         padding: 2rem;

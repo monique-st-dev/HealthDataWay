@@ -3,16 +3,23 @@
 <html lang="en-GB">
   {% include 'includes/head.html' %}
 
-
-
   <body class="d-flex flex-column min-vh-100">
     {% include 'includes/nav.html' %}
 
     <main class="flex-fill d-flex flex-column">
+
+      {% block use_network %}{% endblock %}
+      {% block use_dna_left %}{% endblock %}
+      {% block use_dna_right %}{% endblock %}
+
       {% block use_container %}
-        <div class="container px-3 py-4">
-          {% include 'includes/messages.html' %}
-          {% block content %}{% endblock %}
+        <div class="container py-4">
+          <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+              {% include 'includes/messages.html' %}
+              {% block content %}{% endblock %}
+            </div>
+          </div>
         </div>
       {% endblock %}
     </main>
@@ -24,10 +31,7 @@
       <script src="{% static 'js/dna-left.js' %}"></script>
       <script src="{% static 'js/dna-right.js' %}"></script>
       <script src="{% static 'js/auto-dismiss-alerts.js' %}"></script>
-
+      {% block extra_scripts %}{% endblock %}
     {% endblock %}
-
-
-
   </body>
 </html>
