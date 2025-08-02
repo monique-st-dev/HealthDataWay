@@ -3,36 +3,35 @@
 
 {% block title %}Book Appointment{% endblock %}
 
-
 {% block use_dna_left %}
 <canvas id="dna-left" class="dna-canvas left"></canvas>
 {% endblock %}
 
-{% block use_dna_right %}
-<canvas id="dna-right" class="dna-canvas right"></canvas>
-{% endblock %}
-
 {% block content %}
-<div class="container page-container text-white position-relative text-center mt-4">
-    <h2 class="fancy-text mb-4 animate__animated animate__fadeInDown text-success">Book an Appointment</h2>
+<div class="container page-container text-white position-relative text-center mt-2">
+    <h2 class="fancy-text mb-4 animate__animated animate__fadeInDown">
+        Book an Appointment
+    </h2>
 
     <div class="row justify-content-center">
         <div class="col-md-6 animate__animated animate__fadeInUp">
-            <p class="text-muted">You can only book appointments with doctors you've connected to and been approved by.</p>
-            <form method="post" class="glass-card p-4">
+            <p class="text-light mb-4">
+                You can only book appointments with doctors you’re connected to and approved by.
+            </p>
+
+            <form method="post" class="glass-card p-4 mb-4 text-start">
                 {% csrf_token %}
                 {{ form|crispy }}
-
-                <button type="submit" class="btn btn-outline-success btn-lg w-100 mt-3">
-                    Confirm Appointment
-                </button>
+                <div class="text-center mt-5">
+                    <button type="submit" class="btn register-btn-glow-alt w-100">
+                        Confirm Appointment
+                    </button>
+                </div>
             </form>
 
-            <div class="mt-4">
-                <a href="{% url 'appointment_list' %}" class="btn btn-outline-light w-100">
-                    Back to My Appointments
-                </a>
-            </div>
+            <a href="{% url 'appointment_list' %}" class="btn button-style">
+                Back to My Appointments
+            </a>
         </div>
     </div>
 </div>

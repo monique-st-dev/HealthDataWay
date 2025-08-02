@@ -1,5 +1,3 @@
-/*  Alerts – Override Bootstrap Colors    Reset colors on white-text background */
-
 .alert {
     color: initial !important;
     text-shadow: none !important;

@@ -1,0 +1,45 @@
+/* === DASHBOARD SECTION === */
+.dashboard-box:hover,
+.stat-box:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+.dashboard-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  text-shadow: 0 0 3px #00000055;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.stat-box h6 {
+  margin: 0 0 0.2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #ccc;
+}
+
+.stat-box p {
+  margin: 0;
+  font-size: 1.0rem;
+  font-weight: 600;
+  color: #fff;
+}
+

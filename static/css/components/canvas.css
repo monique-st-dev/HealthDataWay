@@ -14,7 +14,7 @@
     width: 200px;
     pointer-events: none;
     z-index: 1;
-    height: 100%; /* fallback */
+    height: 100%;
 }
 
 .dna-canvas.left {
@@ -25,7 +25,7 @@
     right: 0;
 }
 
-/* Hide DNA on smaller screens */
+
 @media (max-width: 768px),
        (max-width: 600px) {
     .dna-canvas {

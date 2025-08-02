@@ -1,0 +1,39 @@
+/*  Alerts – Override Bootstrap Colors    Reset colors on white-text background */
+
+.alert {
+    color: initial !important;
+    text-shadow: none !important;
+    border-radius: 10px;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+}
+
+
+/* ---------- Success ---------- */
+.alert-success {
+    color: #155724 !important;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* ---------- Danger ---------- */
+.alert-danger,
+.alert-error {
+    color: #721c24 !important;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+/* ---------- Warning ---------- */
+.alert-warning {
+    color: #856404 !important;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+/* ---------- Info ---------- */
+.alert-info {
+    color: #0c5460 !important;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}

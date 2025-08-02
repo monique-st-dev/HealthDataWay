@@ -5,88 +5,98 @@
 
 {% block use_network %}
 <canvas id="dna-right" class="dna-canvas right"></canvas>
-{% endblock %}}
+{% endblock %}
 
 {% block use_container %}
 <section class="hero-section position-relative">
   <div class="medium-container text-white py-5 page-container">
-    <h2 class="fancy-text text-center mb-4">Welcome, Dr. {{ request.user.email }}</h2>
 
-    <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
-      <a href="{% url 'doctor-add-patient' %}" class="btn btn-outline-info">Send Connection</a>
-      <a href="{% url 'doctor-patients-list' %}" class="btn btn-outline-primary">My Patients</a>
-    </div>
+    <h2 class="fancy-text text-center mb-5 text-glow">Welcome, Dr. {{ request.user.email }}</h2>
 
-    <div class="row text-center">
-      <div class="col-md-4 mb-3">
-        <div class="card border-success bg-transparent text-white h-100">
-          <div class="card-body">
-            <h5 class="card-title">Active Connections</h5>
-            <p class="display-6">{{ active_count }}</p>
+    {% include 'includes/messages.html' %}
+
+    <div class="row g-4 mb-4">
+      <!-- Main Actions -->
+      <div class="col-md-6">
+        <div class="info-box dashboard-box h-100 text-center">
+          <h4 class="dashboard-title text-center">Main Actions</h4>
+          <div class="d-flex flex-column align-items-center gap-3">
+            <a href="{% url 'doctor-add-patient' %}" class="button-style d-inline-block">Send Connection</a>
+            <a href="{% url 'doctor-patients-list' %}" class="button-style d-inline-block">My Patients</a>
           </div>
         </div>
       </div>
 
-      <div class="col-md-4 mb-3">
-        <div class="card border-warning bg-transparent text-white h-100">
-          <div class="card-body">
-            <h5 class="card-title">Pending Requests</h5>
-            <p class="display-6">{{ pending_count }}</p>
+      <!-- Stats Overview -->
+      <div class="col-md-6">
+        <div class="info-box dashboard-box h-100 text-center">
+          <h4 class="dashboard-title text-center">Stats Overview</h4>
+          <div class="d-flex flex-column align-items-center gap-3">
+            <div class="stat-box w-100">
+              <h6>Active Connections</h6>
+              <p>{{ active_count }}</p>
+            </div>
+            <div class="stat-box w-100">
+              <h6>Pending Requests</h6>
+              <p>{{ pending_count }}</p>
+            </div>
+            <div class="stat-box w-100">
+              <h6>Unread Notifications</h6>
+              <p>{{ unread_notifications|length }}</p>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="col-md-4 mb-3">
-        <div class="card border-info bg-transparent text-white h-100">
-          <div class="card-body">
-            <h5 class="card-title">Unread Notifications</h5>
-            <p class="display-6">{{ unread_notifications|length }}</p>
-          </div>
+    <!-- Unread Notifications -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-6">
+        <div class="info-box dashboard-box h-100 text-center">
+          <h4 class="dashboard-title">Unread Notifications</h4>
+
+          {% if unread_notifications %}
+            <ul class="list-group glass-card mb-4 text-start">
+              {% for notification in unread_notifications|slice:":5" %}
+                <li class="list-group-item bg-transparent border-light text-white">
+                  <a href="#" class="text-white text-decoration-none notification-item" data-id="{{ notification.id }}">
+                    <strong class="text-warning">{{ notification.get_notification_type_display }}</strong><br>
+                    {{ notification.message }}<br>
+                    <small class="text-muted">{{ notification.created_at|date:"d.m.Y H:i" }}</small>
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted text-center">No new notifications.</p>
+          {% endif %}
+
+          <a href="{% url 'notification_list' %}" class="button-style">View All Notifications</a>
+        </div>
+      </div>
+
+      <!-- Upcoming Appointments -->
+      <div class="col-md-6">
+        <div class="info-box dashboard-box h-100 text-center">
+          <h4 class="dashboard-title">Upcoming Appointments</h4>
+
+          {% if upcoming_appointments %}
+            <ul class="list-group glass-card mb-4">
+              {% for appointment in upcoming_appointments %}
+                <li class="list-group-item bg-transparent border-light text-white">
+                  With <strong>{{ appointment.patient.email }}</strong> on {{ appointment.appointment_datetime|date:"M d, Y H:i" }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted text-center">No upcoming appointments.</p>
+          {% endif %}
+
+          <a href="{% url 'doctor_appointment_list' %}" class="button-style">View All Appointments</a>
         </div>
       </div>
     </div>
 
-    <hr class="bg-white my-4">
-    <h4 class="mb-3 text-center text-warning">Unread Notifications</h4>
-    {% if unread_notifications %}
-      <ul class="list-group mb-3">
-        {% for notification in unread_notifications|slice:":5" %}
-          <li class="list-group-item bg-dark text-white border-light text-start">
-            <a href="#" class="text-white text-decoration-none notification-item" data-id="{{ notification.id }}">
-              <strong>{{ notification.get_notification_type_display }}</strong><br>
-              {{ notification.message }}<br>
-              <small class="text-muted">{{ notification.created_at|date:"d.m.Y H:i" }}</small>
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p class="text-muted text-center">No new notifications.</p>
-    {% endif %}
-
-    <div class="text-center mb-4">
-      <a href="{% url 'notification_list' %}" class="btn btn-outline-light">View All Notifications</a>
-    </div>
-
-    <hr class="bg-white my-4">
-    <h4 class="mb-3 text-center text-warning">Upcoming Appointments</h4>
-    {% if upcoming_appointments %}
-      <ul class="list-group">
-        {% for appointment in upcoming_appointments %}
-          <li class="list-group-item bg-dark text-white border-light">
-            With {{ appointment.patient.email }} on {{ appointment.appointment_datetime|date:"M d, Y H:i" }}
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p class="text-muted text-center">No upcoming appointments.</p>
-    {% endif %}
-
-    <div class="text-center mt-4">
-      <a href="{% url 'doctor_appointment_list' %}" class="btn btn-outline-light">
-        View All Appointments
-      </a>
-    </div>
   </div>
 </section>
 {% endblock %}

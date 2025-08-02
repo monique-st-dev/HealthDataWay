@@ -33,12 +33,18 @@ class PatientRespondView(LoginRequiredMixin, PatientRequiredMixin, View):
         link_id = kwargs.get('pk')
         action = request.POST.get('action')
 
-        link = get_object_or_404(
-            DoctorPatientLink,
-            id=link_id,
-            patient=request.user,
-            status=STATUS_PENDING,
-        )
+        try:
+            link = DoctorPatientLink.objects.get(
+                id=link_id,
+                patient=request.user,
+            )
+        except DoctorPatientLink.DoesNotExist:
+            messages.error(request, _("This connection request does not exist."))
+            return redirect('patient-requests')
+
+        if link.status != STATUS_PENDING:
+            messages.warning(request, _("This request is no longer active."))
+            return redirect('patient-requests')
 
         if action == 'approve':
             link.status = STATUS_APPROVED
@@ -54,10 +60,10 @@ class PatientRespondView(LoginRequiredMixin, PatientRequiredMixin, View):
             )
         else:
             messages.error(request, _("Invalid action submitted."))
+            return redirect('patient-requests')
 
         link.save()
-        return redirect(reverse('patient-connections'))
-
+        return redirect('patient-connections')
 
 class PatientConnectionsView(LoginRequiredMixin, PatientRequiredMixin, ListView):
     template_name = 'connections/patient_connections.html'

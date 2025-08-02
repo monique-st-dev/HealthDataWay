@@ -18,7 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from config import settings
-from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+
 
 
 
@@ -43,6 +43,10 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+else:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 handler404 = 'common.views.custom_404'
+handler403 = 'common.views.custom_403'
+handler500 = 'common.views.custom_500'

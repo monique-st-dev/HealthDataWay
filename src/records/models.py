@@ -1,6 +1,8 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
+from django.utils.timezone import localtime
+
 from accounts.models import CustomUser
 from records.validators import validate_pulse, validate_blood_sugar
 
@@ -68,7 +70,7 @@ class CardiologyRecord(models.Model):
         help_text="Date of the measurement.",
     )
     time = models.TimeField(
-        default=timezone.now,
+        default=lambda: localtime().time(),
         verbose_name="Time",
         help_text="Time of the measurement.",
     )
@@ -125,7 +127,7 @@ class EndocrinologyRecord(models.Model):
         help_text="Date of the measurement.",
     )
     time = models.TimeField(
-        default=timezone.now,
+        default=lambda: localtime().time(),
         verbose_name="Time",
         help_text="Time of the measurement.",
     )
@@ -151,5 +153,3 @@ class EndocrinologyRecord(models.Model):
     def clean(self):
         if self.blood_sugar < 2.5 or self.blood_sugar > 30.0:
             raise ValidationError({'blood_sugar': "Blood sugar must be between 2.5 and 30.0 mmol/L."})
-        if self.date > timezone.now().date():
-            raise ValidationError({'date': "Date cannot be in the future."})

@@ -10,20 +10,31 @@
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="page-container text-center text-white glass-card p-4 animate__animated animate__fadeIn">
-        <h2 class="fancy-text mb-4 animate__fadeInDown">Cancel Appointment</h2>
+<div class="container page-container text-white position-relative text-center mt-5">
+    <h2 class="fancy-text mb-4 text-white animate__animated animate__fadeInDown">
+        Cancel Appointment
+    </h2>
 
-        <p class="lead animate__fadeInUp">
+    <div class="glass-card px-4 py-5 rounded-4 mx-auto border border-info shadow-lg animate__animated animate__fadeInUp"
+         style="max-width: 600px;">
+        <p class="lead">
             Are you sure you want to cancel the appointment with
             <strong>{{ object.doctor.email }}</strong> on
             <strong>{{ object.appointment_datetime|date:"d.m.Y H:i" }}</strong>?
         </p>
 
-        <form method="post" class="mt-4 animate__fadeInUp">
+        <form method="post" class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger px-4 me-2">Yes, cancel</button>
-            <a href="{% url 'appointment_list' %}" class="btn btn-outline-info px-4">No, go back</a>
+            <button type="submit"
+                    class="btn register-btn-glow-alt px-4"
+                    aria-label="Confirm cancellation">
+                Yes, Cancel
+            </button>
+            <a href="{% url 'appointment_list' %}"
+               class="btn btn-outline-info px-4"
+               aria-label="Go back to appointment list">
+                No, Go Back
+            </a>
         </form>
     </div>
 </div>

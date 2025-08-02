@@ -4,86 +4,80 @@
 {% block title %}Patient Data{% endblock %}
 
 {% block use_network %}
-<canvas id="network-canvas"></canvas>
+<canvas id="dna-right" class="dna-canvas right"></canvas>
 {% endblock %}
 
 {% block use_container %}
-<main class="hero-section position-relative">
+<section class="hero-section">
   <div class="container mt-5 text-white hero-content">
-    <h2 class="fancy-text mb-2">Patient: {{ patient.profile.full_name|default:patient.email }}</h2>
-    <p class="lead text-info mb-4">Specialty: {{ direction|capfirst }}</p>
+    <h2 class="fancy-text mb-4 text-center">
+      Patient: {{ patient.profile.full_name|default:patient.email }}
+    </h2>
+    <p class="lead text-info text-center mb-4">
+      Specialty: {{ direction|capfirst }}
+    </p>
 
     {% if direction == 'cardiology' %}
-      <!-- Cardiology Records -->
-      <div class="card glass-card mb-5 p-4">
-        <h4 class="text-info">🫀 Cardiology Records</h4>
-        {% if cardiology_records %}
-          <div class="table-responsive mt-3">
-            <table class="table table-bordered table-sm table-hover text-white">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Systolic</th>
-                  <th>Diastolic</th>
-                  <th>Pulse</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for record in cardiology_records %}
-                  <tr>
-                    <td>{{ record.created_at|date:"Y-m-d H:i" }}</td>
-                    <td>{{ record.systolic|default:"–" }}</td>
-                    <td>{{ record.diastolic|default:"–" }}</td>
-                    <td>{{ record.pulse|default:"–" }}</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-        {% else %}
-          <p class="text-muted mt-2">No cardiology records available.</p>
-        {% endif %}
+      <div class="table-responsive">
+        <table class="table glass-table text-center align-middle">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Systolic</th>
+              <th>Diastolic</th>
+              <th>Pulse</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for record in cardiology_records %}
+              <tr>
+                <td>{{ record.created_at|date:"Y-m-d H:i" }}</td>
+                <td>{{ record.systolic|default:"–" }}</td>
+                <td>{{ record.diastolic|default:"–" }}</td>
+                <td>{{ record.pulse|default:"–" }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     {% elif direction == 'endocrinology' %}
-      <!-- Endocrinology Records -->
-      <div class="card glass-card mb-5 p-4">
-        <h4 class="text-warning">🧪 Endocrinology Records</h4>
-        {% if endocrinology_records %}
-          <div class="table-responsive mt-3">
-            <table class="table table-bordered table-sm table-hover text-white">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Blood Sugar (mmol/L)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for record in endocrinology_records %}
-                  <tr>
-                    <td>{{ record.created_at|date:"Y-m-d H:i" }}</td>
-                    <td>{{ record.blood_sugar|default:"–" }}</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-        {% else %}
-          <p class="text-muted mt-2">No endocrinology records available.</p>
-        {% endif %}
+      <div class="table-responsive">
+        <table class="table glass-table text-center align-middle">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Blood Sugar (mmol/L)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for record in endocrinology_records %}
+              <tr>
+                <td>{{ record.created_at|date:"Y-m-d H:i" }}</td>
+                <td>{{ record.blood_sugar|default:"–" }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     {% endif %}
 
-    <div class="mt-4">
-      <a href="{% url 'doctor-patient-report' patient.pk %}" class="btn btn-outline-warning">
+    {% if not cardiology_records and direction == 'cardiology' %}
+      <p class="text-muted text-center mt-3">No cardiology records available.</p>
+    {% elif not endocrinology_records and direction == 'endocrinology' %}
+      <p class="text-muted text-center mt-3">No endocrinology records available.</p>
+    {% endif %}
+
+    <div class="text-center mt-4">
+      <a href="{% url 'doctor-patient-report' patient.pk %}" class="register-btn-glow-alt px-4 py-2 rounded">
         Generate Detailed Report
       </a>
     </div>
 
-    <div class="mt-3">
-      <a href="{% url 'doctor-patients-list' %}" class="btn btn-outline-light">
+    <div class="text-center mt-3">
+      <a href="{% url 'doctor-patients-list' %}" class="register-btn-glow px-4 py-2 rounded">
         ← Back to My Patients
       </a>
     </div>
   </div>
-</main>
+</section>
 {% endblock %}

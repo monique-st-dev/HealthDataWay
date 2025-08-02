@@ -4,7 +4,7 @@
 {% block title %}Doctor Requests{% endblock %}
 
 {% block use_network %}
-<canvas id="network-canvas"></canvas>
+<canvas id="dna-left" class="dna-canvas left"></canvas>
 {% endblock %}
 
 {% block use_container %}
@@ -12,9 +12,11 @@
   <div class="container mt-5 text-white hero-content">
     <h2 class="fancy-text mb-4 text-center">Doctor Connection Requests</h2>
 
+    {% include 'includes/messages.html' %}
+
     {% if requests %}
       <div class="table-responsive">
-        <table class="table table-dark table-bordered table-hover text-center align-middle">
+        <table class="table glass-table text-center align-middle">
           <thead>
             <tr>
               <th>Doctor</th>

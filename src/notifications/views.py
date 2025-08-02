@@ -1,11 +1,15 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.views import View
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET, require_POST
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.decorators import method_decorator
+from django.contrib import messages
+
 from .models import Notification
+
 
 class NotificationListView(LoginRequiredMixin, ListView):
     model = Notification
@@ -31,3 +35,16 @@ class MarkNotificationAsReadView(LoginRequiredMixin, View):
         notification.is_read = True
         notification.save()
         return JsonResponse({'status': 'success'})
+
+
+@method_decorator(require_POST, name='dispatch')
+@method_decorator(require_POST, name='dispatch')
+class DeleteNotificationView(LoginRequiredMixin, View):
+    def post(self, request, pk):
+        notification = Notification.objects.filter(pk=pk, recipient=request.user).first()
+        if notification:
+            notification.delete()
+            messages.success(request, "Notification deleted successfully.")
+        else:
+            messages.warning(request, "Notification not found or access denied.")
+        return redirect('notification_list')

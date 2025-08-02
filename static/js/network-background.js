@@ -1,5 +1,3 @@
-console.log("🚀 network-background.js loaded!");
-
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("network-canvas");
     if (!canvas) return;

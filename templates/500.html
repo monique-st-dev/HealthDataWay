@@ -1,0 +1,32 @@
+{% extends 'includes/base.html' %}
+{% load static %}
+
+{% block title %}500 – Server Error{% endblock %}
+
+{% block use_network %}
+  <canvas id="network-canvas"></canvas>
+{% endblock %}
+
+{% block use_dna_left %}
+  <canvas id="dna-left" class="dna-canvas left"></canvas>
+{% endblock %}
+
+{% block use_dna_right %}
+  <canvas id="dna-right" class="dna-canvas right"></canvas>
+{% endblock %}
+
+{% block use_container %}
+<main class="hero-section position-relative">
+  <div class="container text-white text-center page-container mt-5">
+    <div class="display-1 fw-bold text-danger mb-3">500</div>
+    <h2 class="fancy-text mb-3">Something went wrong</h2>
+    <p class="lead text-muted mb-4">Our team is working to fix the problem. Please try again later.</p>
+    <a href="{% url 'home' %}" class="btn btn-glow-blue btn-lg" aria-label="Back to homepage">← Back to Home</a>
+  </div>
+</main>
+{% endblock %}
+
+{% block page_scripts %}
+  {{ block.super }}
+  <script src="{% static 'js/network-background.js' %}"></script>
+{% endblock %}

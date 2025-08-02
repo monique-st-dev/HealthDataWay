@@ -1,5 +1,3 @@
-console.log("✅ dna-right.js loaded successfully");
-
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("dna-right");
     if (!canvas) return;
@@ -30,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const leftColor = isEven ? "#ffd76a" : "#a7d8ec";
             const rightColor = isEven ? "#a7d8ec" : "#ffd76a";
 
-            // Линия
+            // line
             ctx.beginPath();
             ctx.moveTo(xLeft, y);
             ctx.lineTo(xRight, y);

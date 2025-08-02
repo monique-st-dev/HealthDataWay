@@ -3,13 +3,13 @@
 
 {% block title %}Health Data Table{% endblock %}
 
-{% block use_network %}
-<canvas id="network-canvas"></canvas>
+{% block use_dna_left %}
+<canvas id="dna-left" class="dna-canvas left"></canvas>
 {% endblock %}
 
 {% block content %}
 <div class="container page-container text-white position-relative text-center mt-4">
-    <h2 class="fancy-text mb-4 text-warning animate__animated animate__fadeInDown">
+    <h2 class="fancy-text mb-4 animate__animated animate__fadeInDown">
         Health Data Filter
     </h2>
 
@@ -19,7 +19,7 @@
                 {% csrf_token %}
                 {{ form|crispy }}
                 <div class="text-center mt-3">
-                    <button type="submit" class="btn btn-outline-warning">
+                    <button type="submit" class="btn register-btn-glow-alt px-4">
                         Show Table
                     </button>
                 </div>
@@ -28,11 +28,14 @@
     </div>
 
     {% if metrics %}
-        <h4 class="text-info animate__fadeInUp">Data for the Period: {{ start_date }} – {{ end_date }}</h4>
+        <h5 class="text-light animate__fadeInUp mt-3 mb-2">
+            Data for the Period: <span class="text-info">{{ start_date }} – {{ end_date }}</span>
+        </h5>
+
         <div class="table-responsive mt-4 animate__fadeInUp">
-            <table class="table table-striped glass-card text-white table-hover border-white">
+            <table class="table glass-table table-hover">
                 <thead>
-                    <tr class="table-primary">
+                    <tr>
                         <th>Date</th>
                         {% if 'sugar' in metrics %}<th>Blood Sugar (mmol/L)</th>{% endif %}
                         {% if 'pressure' in metrics %}<th>Blood Pressure (mmHg)</th>{% endif %}

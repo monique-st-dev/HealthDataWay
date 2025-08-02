@@ -2,33 +2,36 @@
 {% block title %}My Connections{% endblock %}
 
 {% block use_network %}
-<canvas id="network-canvas"></canvas>
+<canvas id="dna-left" class="dna-canvas left"></canvas>
 {% endblock %}
 
 {% block use_container %}
 <section class="hero-section">
-  <div class="container mt-5 text-white text-center hero-content">
-    <h2 class="fancy-text mb-4">My Approved Doctor Connections</h2>
+  <div class="container mt-6 text-white text-center hero-content">
+    <h2 class="fancy-text mb-3">My Approved Doctor Connections</h2>
+
+    {% include 'includes/messages.html' %}
 
     {% if connections %}
-      <ul class="list-group">
+      <div class="row justify-content-center gx-5 gy-4">
         {% for link in connections %}
-          <li class="list-group-item bg-transparent text-white border-light d-flex justify-content-between align-items-center flex-column flex-md-row text-start">
-            <div class="text-start">
-              <strong>Doctor:</strong> {{ link.doctor.profile.full_name|default:link.doctor.email }}<br>
-              <strong>Direction:</strong> {{ link.direction|capfirst }}
+          <div class="col-12 col-md-10 col-lg-6 col-xl-5 d-flex justify-content-center">
+            <div class="stat-box h-100 d-flex flex-column justify-content-between p-4">
+              <div>
+                <h5 class="dashboard-title text-center">Doctor Connection</h5>
+                <p><strong>Doctor:</strong> {{ link.doctor.profile.full_name|default:link.doctor.email }}</p>
+                <p><strong>Direction:</strong> {{ link.direction|capfirst }}</p>
+              </div>
+              <form method="post" action="{% url 'disconnect-doctor' link.pk %}" class="text-end mt-3">
+                {% csrf_token %}
+                <button type="submit" class="register-btn-glow btn px-4 py-2">Disconnect</button>
+              </form>
             </div>
-            <form method="post" action="{% url 'disconnect-doctor' link.pk %}" class="mt-2 mt-md-0">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-sm btn-outline-danger">Disconnect</button>
-            </form>
-          </li>
+          </div>
         {% endfor %}
-      </ul>
-    {% else %}
-      <div class="alert alert-info mt-4">
-        You have no active doctor connections yet.
       </div>
+    {% else %}
+      <div class="alert alert-info mt-4">You have no active doctor connections yet.</div>
     {% endif %}
   </div>
 </section>

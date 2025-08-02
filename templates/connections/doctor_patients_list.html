@@ -4,7 +4,7 @@
 {% block title %}My Patients{% endblock %}
 
 {% block use_network %}
-<canvas id="network-canvas"></canvas>
+<canvas id="dna-right" class="dna-canvas right"></canvas>
 {% endblock %}
 
 {% block use_container %}
@@ -12,9 +12,11 @@
   <div class="container mt-5 text-white hero-content">
     <h2 class="fancy-text mb-4 text-center">My Patient Connections</h2>
 
+    {% include 'includes/messages.html' %}
+
     {% if links %}
       <div class="table-responsive">
-        <table class="table table-dark table-bordered table-hover align-middle text-center">
+        <table class="table glass-table">
           <thead>
             <tr>
               <th>Patient</th>
