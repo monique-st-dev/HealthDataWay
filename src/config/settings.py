@@ -28,7 +28,9 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", default="True") == "True"
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="127.0.0.1,localhost").split(",")
-CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", default="").split(",")
+CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS").split(",")
+
+
 
 
 # Application definition
