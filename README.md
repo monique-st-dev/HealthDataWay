@@ -56,7 +56,7 @@ HealthDataWay/
 - **Django 5.2**
 - **PostgreSQL 15** 
 - **Celery + Redis** 
-- **Bootstrap 5**, 
+- **Bootstrap 5** 
 - **Docker Compose** 
 - **pytest** 
 
@@ -87,23 +87,25 @@ Available endpoints:
    ```bash
    git clone https://github.com/your-username/HealthDataWay.git
    cd HealthDataWay
+   ```
 
 
 2. **Create your environment file:**
     ```bash
     cp .env.example .env
+   ```
    
 3. **Start the project with Docker:**
     ```bash
     docker-compose up --build
+   ```
 
 4. **Run migrations and create superuser:**
     ```bash
     docker-compose exec web python manage.py migrate
     docker-compose exec web python manage.py createsuperuser
+    ```
 
-
-
-Author
-Created by Monik 
-Final project for the Django Advanced Course – SoftUni 2025
+## Author
+Created by Monik  
+Final project for the Django Advanced Django Course @ SoftUni (2025)

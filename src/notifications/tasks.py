@@ -45,30 +45,3 @@ def create_notification_task(user_id, message, notification_type='reminder'):
         logger.error(f"Unexpected error in create_notification_task: {e}")
         return None
 
-
-# @shared_task
-# def send_appointment_reminders():
-#     now = timezone.now()
-#     target_time = now + timedelta(hours=24)
-#     window_start = target_time - timedelta(minutes=5)
-#     window_end = target_time + timedelta(minutes=5)
-#
-#     upcoming_appointments = Appointment.objects.select_related('doctor', 'patient').filter(
-#         is_confirmed=True,
-#         appointment_datetime__range=(window_start, window_end),
-#     )
-#
-#     for appt in upcoming_appointments:
-#         try:
-#             patient = appt.patient
-#             doctor = appt.doctor
-#             time_str = appt.appointment_datetime.strftime('%d.%m.%Y at %H:%M')
-#
-#             create_notification_task.delay(
-#                 user_id=patient.id,
-#                 message=f"Reminder: You have an appointment with Dr. {doctor.email} on {time_str}",
-#                 notification_type='appointment_reminder'
-#             )
-#
-#         except Exception as e:
-#             logger.error(f"Error sending reminder for appointment {appt.id}: {e}")

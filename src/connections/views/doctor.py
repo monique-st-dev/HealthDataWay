@@ -55,7 +55,18 @@ class DoctorCreateLinkView(LoginRequiredMixin, DoctorRequiredMixin, FormView):
             )
             messages.success(self.request, _(f"Request sent to {patient.email} ({direction})."))
 
-        return super().form_valid(form)
+        from notifications.tasks import create_notification_task
+        from notifications.notification_constants import CONNECTION_REQUEST
+
+        create_notification_task.delay(
+            user_id=patient.id,
+            notification_type=CONNECTION_REQUEST,
+            message=f"You have a new connection request from Dr. {self.request.user.profile.full_name or self.request.user.email}"
+        )
+
+
+        return redirect(self.get_success_url())
+
 
 
 class DoctorPatientsListView(LoginRequiredMixin, DoctorRequiredMixin, ListView):

@@ -6,6 +6,10 @@ from django.utils.timezone import localtime
 from accounts.models import CustomUser
 from records.validators import validate_pulse, validate_blood_sugar
 
+from django.utils.timezone import localtime
+
+def get_current_time():
+    return localtime().time()
 
 class DirectionType(models.Model):
     """
@@ -70,7 +74,7 @@ class CardiologyRecord(models.Model):
         help_text="Date of the measurement.",
     )
     time = models.TimeField(
-        default=lambda: localtime().time(),
+        default=get_current_time,
         verbose_name="Time",
         help_text="Time of the measurement.",
     )
@@ -127,7 +131,7 @@ class EndocrinologyRecord(models.Model):
         help_text="Date of the measurement.",
     )
     time = models.TimeField(
-        default=lambda: localtime().time(),
+        default=get_current_time,
         verbose_name="Time",
         help_text="Time of the measurement.",
     )

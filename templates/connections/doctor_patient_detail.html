@@ -26,6 +26,7 @@
               <th>Systolic</th>
               <th>Diastolic</th>
               <th>Pulse</th>
+                <th>Notes</th>
             </tr>
           </thead>
           <tbody>
@@ -35,6 +36,7 @@
                 <td>{{ record.systolic|default:"–" }}</td>
                 <td>{{ record.diastolic|default:"–" }}</td>
                 <td>{{ record.pulse|default:"–" }}</td>
+                <td>{{ record.notes|default:"–" }}</td>
               </tr>
             {% endfor %}
           </tbody>
@@ -47,6 +49,7 @@
             <tr>
               <th>Date</th>
               <th>Blood Sugar (mmol/L)</th>
+              <th>Notes</th>
             </tr>
           </thead>
           <tbody>
@@ -54,6 +57,7 @@
               <tr>
                 <td>{{ record.created_at|date:"Y-m-d H:i" }}</td>
                 <td>{{ record.blood_sugar|default:"–" }}</td>
+                <td>{{ record.notes|default:"–" }}</td>
               </tr>
             {% endfor %}
           </tbody>

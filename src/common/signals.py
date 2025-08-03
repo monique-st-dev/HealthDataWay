@@ -17,14 +17,14 @@ def create_user_groups(sender, **kwargs):
             print(f"Group already exists: {group_name}")
 
 
-    staff_group = Group.objects.get(name="Staff")
     permissions = Permission.objects.filter(codename__in=[
-        "view_customuser", "change_customuser",
+        "view_user", "change_user", "add_user",
         "view_profile", "change_profile",
-        "view_healthdata",
-        "add_customuser",
     ])
+
+    staff_group = Group.objects.get(name="Staff")
     staff_group.permissions.set(permissions)
+
 
 @receiver(post_save, sender=UserModel)
 def add_staff_to_staff_group(sender, instance, created, **kwargs):
