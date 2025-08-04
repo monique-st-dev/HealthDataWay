@@ -33,11 +33,19 @@ jobs:
           DEBUG: "False"
           ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
           CSRF_TRUSTED_ORIGINS: ${{ secrets.CSRF_TRUSTED_ORIGINS }}
-          DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@${{ secrets.POSTGRES_HOST }}:${{ secrets.POSTGRES_PORT }}/${{ secrets.POSTGRES_DB }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
           CELERY_TASK_ALWAYS_EAGER: "True"
 
-      - name: Run migrations
+      - name: Run migrations (with debug info)
         run: |
+          echo "🔍 POSTGRES_DB = $POSTGRES_DB"
+          echo "🔍 POSTGRES_USER = $POSTGRES_USER"
+          echo "🔍 POSTGRES_HOST = $POSTGRES_HOST"
+          echo "🔍 POSTGRES_PORT = $POSTGRES_PORT"
           python src/manage.py migrate
         env:
           DJANGO_SETTINGS_MODULE: config.settings
@@ -45,7 +53,11 @@ jobs:
           DEBUG: "False"
           ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
           CSRF_TRUSTED_ORIGINS: ${{ secrets.CSRF_TRUSTED_ORIGINS }}
-          DATABASE_URL: postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@${{ secrets.POSTGRES_HOST }}:${{ secrets.POSTGRES_PORT }}/${{ secrets.POSTGRES_DB }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
           CELERY_TASK_ALWAYS_EAGER: "True"
 
       - name: Deploy to Azure Web App
