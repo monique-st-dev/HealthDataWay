@@ -113,11 +113,11 @@ print("🔍 POSTGRES_DB =", config("POSTGRES_DB", default="❌ NOT FOUND"))
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB", config("POSTGRES_DB", default="")),
-        "USER": os.getenv("POSTGRES_USER", config("POSTGRES_USER", default="")),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", config("POSTGRES_PASSWORD", default="")),
-        "HOST": os.getenv("POSTGRES_HOST", config("POSTGRES_HOST", default="")),
-        "PORT": os.getenv("POSTGRES_PORT", config("POSTGRES_PORT", default="5432")),
+        "NAME": os.getenv("POSTGRES_DB") or config("POSTGRES_DB", default=""),
+        "USER": os.getenv("POSTGRES_USER") or config("POSTGRES_USER", default=""),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD") or config("POSTGRES_PASSWORD", default=""),
+        "HOST": os.getenv("POSTGRES_HOST") or config("POSTGRES_HOST", default=""),
+        "PORT": os.getenv("POSTGRES_PORT") or config("POSTGRES_PORT", default="5432"),
     }
 }
 
