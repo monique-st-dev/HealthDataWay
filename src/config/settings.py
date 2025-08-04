@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from decouple import config, Csv
+print("DEBUG: POSTGRES_DB =", config("POSTGRES_DB", default="NOT SET"))
+print("DEBUG: POSTGRES_USER =", config("POSTGRES_USER", default="NOT SET"))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
