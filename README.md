@@ -108,4 +108,5 @@ Available endpoints:
 
 ## Author
 Created by Monik  
+
 Final project for the Django Advanced Django Course @ SoftUni (2025)
