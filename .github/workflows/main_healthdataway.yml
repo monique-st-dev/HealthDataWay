@@ -29,15 +29,15 @@ jobs:
           python src/manage.py collectstatic --noinput
         env:
           DJANGO_SETTINGS_MODULE: config.settings
-          SECRET_KEY: ${{ vars.SECRET_KEY }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
           DEBUG: "False"
-          ALLOWED_HOSTS: ${{ vars.ALLOWED_HOSTS }}
-          CSRF_TRUSTED_ORIGINS: ${{ vars.CSRF_TRUSTED_ORIGINS }}
-          POSTGRES_DB: ${{ vars.POSTGRES_DB }}
-          POSTGRES_USER: ${{ vars.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ vars.POSTGRES_PASSWORD }}
-          POSTGRES_HOST: ${{ vars.POSTGRES_HOST }}
-          POSTGRES_PORT: ${{ vars.POSTGRES_PORT }}
+          ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+          CSRF_TRUSTED_ORIGINS: ${{ secrets.CSRF_TRUSTED_ORIGINS }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
           CELERY_TASK_ALWAYS_EAGER: "True"
 
       - name: Run migrations
@@ -45,15 +45,15 @@ jobs:
           python src/manage.py migrate
         env:
           DJANGO_SETTINGS_MODULE: config.settings
-          SECRET_KEY: ${{ vars.SECRET_KEY }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
           DEBUG: "False"
-          ALLOWED_HOSTS: ${{ vars.ALLOWED_HOSTS }}
-          CSRF_TRUSTED_ORIGINS: ${{ vars.CSRF_TRUSTED_ORIGINS }}
-          POSTGRES_DB: ${{ vars.POSTGRES_DB }}
-          POSTGRES_USER: ${{ vars.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ vars.POSTGRES_PASSWORD }}
-          POSTGRES_HOST: ${{ vars.POSTGRES_HOST }}
-          POSTGRES_PORT: ${{ vars.POSTGRES_PORT }}
+          ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+          CSRF_TRUSTED_ORIGINS: ${{ secrets.CSRF_TRUSTED_ORIGINS }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
           CELERY_TASK_ALWAYS_EAGER: "True"
 
       - name: Deploy to Azure Web App
