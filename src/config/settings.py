@@ -99,6 +99,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+print("🔍 POSTGRES_DB =", config("POSTGRES_DB", default="❌ NOT FOUND"))
 
 DATABASES = {
     "default": {
