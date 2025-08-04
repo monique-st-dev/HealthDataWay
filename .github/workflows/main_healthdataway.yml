@@ -39,6 +39,11 @@ jobs:
           POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
           POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
           CELERY_TASK_ALWAYS_EAGER: "True"
+      - name: Test DNS resolution
+        run: |
+          echo "🔍 Testing DNS for PostgreSQL host"
+          ping -c 3 healthdataway-server.postgres.database.azure.com || true
+
 
       - name: Run migrations (with debug info)
         run: |
