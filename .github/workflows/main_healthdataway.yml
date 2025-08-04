@@ -51,6 +51,7 @@ jobs:
           echo "🔍 POSTGRES_USER = $POSTGRES_USER"
           echo "🔍 POSTGRES_HOST = $POSTGRES_HOST"
           echo "🔍 POSTGRES_PORT = $POSTGRES_PORT"
+          nslookup $POSTGRES_HOST || echo "DNS lookup failed"
           python src/manage.py migrate
         env:
           DJANGO_SETTINGS_MODULE: config.settings
