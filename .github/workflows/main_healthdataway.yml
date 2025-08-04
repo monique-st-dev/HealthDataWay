@@ -38,6 +38,7 @@ jobs:
           POSTGRES_PASSWORD: ${{ vars.POSTGRES_PASSWORD }}
           POSTGRES_HOST: ${{ vars.POSTGRES_HOST }}
           POSTGRES_PORT: ${{ vars.POSTGRES_PORT }}
+          CELERY_TASK_ALWAYS_EAGER: "True"
 
       - name: Run migrations
         run: |
@@ -53,6 +54,7 @@ jobs:
           POSTGRES_PASSWORD: ${{ vars.POSTGRES_PASSWORD }}
           POSTGRES_HOST: ${{ vars.POSTGRES_HOST }}
           POSTGRES_PORT: ${{ vars.POSTGRES_PORT }}
+          CELERY_TASK_ALWAYS_EAGER: "True"
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3

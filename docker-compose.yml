@@ -6,7 +6,7 @@ services:
     container_name: healthdataway_postgres
     restart: always
     env_file:
-      - .env
+      - ./src/.env
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
@@ -35,7 +35,7 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - .env
+      - ./src/.env
     environment:
       - PYTHONPATH=/code/src
     depends_on:
@@ -55,7 +55,7 @@ services:
     volumes:
       - .:/code
     env_file:
-      - .env
+      - ./src/.env
     depends_on:
       - db
       - redis
