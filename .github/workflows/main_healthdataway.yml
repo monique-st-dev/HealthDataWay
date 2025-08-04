@@ -29,42 +29,17 @@ jobs:
           python src/manage.py collectstatic --noinput
         env:
           DJANGO_SETTINGS_MODULE: config.settings
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          DEBUG: "False"
-          ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
-          CSRF_TRUSTED_ORIGINS: ${{ secrets.CSRF_TRUSTED_ORIGINS }}
-          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
-          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
-          CELERY_TASK_ALWAYS_EAGER: "True"
+
       - name: Test DNS resolution
         run: |
           echo "🔍 Testing DNS for PostgreSQL host"
           ping -c 3 healthdataway-server.postgres.database.azure.com || true
 
-
       - name: Run migrations (with debug info)
         run: |
-          echo "🔍 POSTGRES_DB = $POSTGRES_DB"
-          echo "🔍 POSTGRES_USER = $POSTGRES_USER"
-          echo "🔍 POSTGRES_HOST = $POSTGRES_HOST"
-          echo "🔍 POSTGRES_PORT = $POSTGRES_PORT"
-          nslookup $POSTGRES_HOST || echo "DNS lookup failed"
           python src/manage.py migrate
         env:
           DJANGO_SETTINGS_MODULE: config.settings
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          DEBUG: "False"
-          ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
-          CSRF_TRUSTED_ORIGINS: ${{ secrets.CSRF_TRUSTED_ORIGINS }}
-          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
-          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
-          CELERY_TASK_ALWAYS_EAGER: "True"
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
