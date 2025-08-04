@@ -13,14 +13,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from decouple import config, Csv
-print("DEBUG: POSTGRES_DB =", config("POSTGRES_DB", default="NOT SET"))
-print("DEBUG: POSTGRES_USER =", config("POSTGRES_USER", default="NOT SET"))
-
-import socket
-try:
-    print("DNS Test:", socket.gethostbyname(config("POSTGRES_HOST")))
-except Exception as e:
-    print("DNS Test FAILED:", e)
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -77,6 +69,7 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -108,7 +101,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-print("🔍 POSTGRES_DB =", config("POSTGRES_DB", default="❌ NOT FOUND"))
 
 DATABASES = {
     "default": {
@@ -120,8 +112,6 @@ DATABASES = {
         "PORT": os.getenv("POSTGRES_PORT") or config("POSTGRES_PORT", default="5432"),
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -214,5 +204,3 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
 
 
-print("DEBUG =", DEBUG)
-print("CELERY_TASK_ALWAYS_EAGER =", CELERY_TASK_ALWAYS_EAGER)
