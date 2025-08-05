@@ -28,15 +28,16 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: healthdataway_web
-    command: /code/entrypoint.sh
+    command: python src/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
+      - ./staticfiles:/code/staticfiles
+    ports:
+      - "8000:8000"
     env_file:
       - ./src/.env
     environment:
       - PYTHONPATH=/code/src
-    expose:
-      - "8000"
     depends_on:
       - db
       - redis
@@ -61,20 +62,6 @@ services:
     networks:
       - backend
 
-  nginx:
-    image: nginx:latest
-    container_name: healthdataway_nginx
-    restart: always
-    ports:
-      - "8000:80"
-    volumes:
-      - ./staticfiles:/vol/web/static
-      - ./media:/vol/web/media
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-    depends_on:
-      - web
-    networks:
-      - backend
 
 volumes:
   postgres_data:
