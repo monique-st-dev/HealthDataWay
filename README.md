@@ -80,6 +80,16 @@ Available endpoints:
 - `/api/records/cardiology/`
 
 ---
+## 🌐 Live Deployment
+
+You can test the live version of the project here:
+
+🔗 [HealthDataWay – Live Site](https://healthdataway-cxfxggbfacckg5ef.italynorth-01.azurewebsites.net)
+
+
+---
+
+
 
 ## Getting Started (Locally)
 
